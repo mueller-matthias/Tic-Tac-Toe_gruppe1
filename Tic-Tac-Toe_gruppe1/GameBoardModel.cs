@@ -8,6 +8,7 @@ namespace Tic_Tac_Toe_gruppe1
 {
     public class GameBoardModel
     {
+
         private char[,] board;
         private int groesse;
 
@@ -16,82 +17,65 @@ namespace Tic_Tac_Toe_gruppe1
             groesse = size;
             board = new char[size, size];
             for (int i = 0; i < size; i++)
-            {
                 for (int j = 0; j < size; j++)
-                {
-                    board[i, j] = ' ';
-                }
-            }
+                    board[i, j] = '.'; // Initialisierung mit Platzhaltern
         }
 
-        public char GetCell(int row, int col)
-        {
-            return board[row, col];
-        }
+        public char GetCell(int row, int col) => board[row, col];
 
-        public void SetCell(int row, int col, char symbol)
-        {
-            board[row, col] = symbol;
-        }
+        public void SetCell(int row, int col, char symbol) => board[row, col] = symbol;
 
-        public bool ValidateMove(Spieler spieler, int row)
-        {
-            return row >= 0 && row < groesse && board[row, 0] == ' ';
-        }
+        public bool ValidateMove(int row, int col) => board[row, col] == '.';
 
-        public bool pruefeGewinner(GameBoardModel spielfeld, Spieler spieler)
+        public bool PruefeGewinner(char symbol)
         {
-            char symbol = spieler.Symbol;
-
-            // Horizontale und vertikale Prüfung
             for (int i = 0; i < groesse; i++)
             {
-                if (CheckRow(i, symbol) || CheckColumn(i, symbol))
-                    return true;
+                if (CheckRow(i, symbol) || CheckCol(i, symbol)) return true;
             }
-
-            // Diagonale Prüfung
-            return CheckDiagonal(symbol) || CheckAntiDiagonal(symbol);
+            return CheckDiagonals(symbol);
         }
 
         private bool CheckRow(int row, char symbol)
         {
-            for (int i = 0; i < groesse; i++)
-            {
-                if (board[row, i] != symbol)
-                    return false;
-            }
+            for (int col = 0; col < groesse; col++)
+                if (board[row, col] != symbol) return false;
             return true;
         }
 
-        private bool CheckColumn(int col, char symbol)
+        private bool CheckCol(int col, char symbol)
         {
-            for (int i = 0; i < groesse; i++)
-            {
-                if (board[i, col] != symbol)
-                    return false;
-            }
+            for (int row = 0; row < groesse; row++)
+                if (board[row, col] != symbol) return false;
             return true;
         }
 
-        private bool CheckDiagonal(char symbol)
+        private bool CheckDiagonals(char symbol)
         {
+            bool diag1 = true, diag2 = true;
             for (int i = 0; i < groesse; i++)
             {
-                if (board[i, i] != symbol)
-                    return false;
+                if (board[i, i] != symbol) diag1 = false;
+                if (board[i, groesse - 1 - i] != symbol) diag2 = false;
             }
-            return true;
+            return diag1 || diag2;
         }
 
-        private bool CheckAntiDiagonal(char symbol)
+        public void DisplayBoard()
         {
+            Console.Write("  ");
+            for (int i = 0; i < groesse; i++) Console.Write(i + " ");
+            Console.WriteLine();
+
             for (int i = 0; i < groesse; i++)
             {
-                if (board[i, groesse - 1 - i] != symbol)
-                    return false;
+                Console.Write(i + " ");
+                for (int j = 0; j < groesse; j++)
+                {
+                    Console.Write(board[i, j] + " ");
+                }
+                Console.WriteLine();
             }
-            return true;
         }
     }
 }

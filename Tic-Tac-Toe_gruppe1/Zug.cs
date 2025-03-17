@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    public class Zug
+    internal class Zug
     {
-        private int position;
+        public Spieler Spieler { get; }
+        public int Row { get; }
+        public int Col { get; }
+        public DateTime Zeitstempel { get; }
 
-        private DateTime zeitstempel;
-
-        public void speichern()
+        public Zug(Spieler spieler, int row, int col)
         {
-
+            Spieler = spieler;
+            Row = row;
+            Col = col;
+            Zeitstempel = DateTime.Now;
         }
-
     }
 }

@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.Write("Spielfeldgröße wählen: ");
+            int size = int.Parse(Console.ReadLine());
+            GameController spiel = new GameController(size);
+            spiel.Starten();
         }
     }
 }

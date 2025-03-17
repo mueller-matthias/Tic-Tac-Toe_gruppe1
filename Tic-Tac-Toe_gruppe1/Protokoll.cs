@@ -6,23 +6,14 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    public class Protokoll
+    internal class Protokoll
     {
-        private List<Zug> Spielverlauf = new List<Zug>();
+        private List<Zug> spielverlauf = new List<Zug>();
 
-        public void speichernInDatei(string dateiname)
+        public void Speichern(Zug zug)
         {
-
-        }
-
-        public void ladenVonDatei(string dateiname) 
-        {
-            
-        }
-
-        public void anzeigen()
-        {
-
+            spielverlauf.Add(zug);
+            File.AppendAllText("protokoll.txt", $"{zug.Spieler.Name} setzte auf ({zug.Row}, {zug.Col}) um {zug.Zeitstempel}\n");
         }
     }
 }

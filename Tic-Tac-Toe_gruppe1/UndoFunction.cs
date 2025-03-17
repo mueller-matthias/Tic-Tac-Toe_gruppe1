@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    public class UndoFunction
+    internal class UndoFunction
     {
         private Stack<Zug> zugHistory = new Stack<Zug>();
 
-        public void speichereZug( Zug zug)
+        public void SpeichereZug(Zug zug)
         {
-
+            zugHistory.Push(zug);
         }
 
-        public Zug ladeLetztenZug()
+        public Zug LadeLetztenZug()
         {
-
+            return zugHistory.Count > 0 ? zugHistory.Pop() : null;
         }
 
     }

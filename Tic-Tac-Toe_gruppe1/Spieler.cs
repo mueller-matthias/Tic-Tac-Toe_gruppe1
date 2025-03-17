@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    public class Spieler
+    internal class Spieler
     {
-        private string name;
+        public string Name { get; }
+        public char Symbol { get; }
+        public UndoFunction Undo { get; } = new UndoFunction();
 
-        private char symbol;
-
-        public void macheZug(int row, int col)
+        public Spieler(string name, char symbol)
         {
-
+            Name = name;
+            Symbol = symbol;
         }
     }
 }
