@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    internal class Protokoll
+    public class Protokoll
     {
+        private List<Zug> Spielverlauf = new List<Zug>();
+
+        public void speichernInDatei(string dateiname)
+        {
+
+        }
+
+        public void ladenVonDatei(string dateiname) 
+        {
+            
+        }
+
+        public void anzeigen()
+        {
+
+        }
     }
 }
