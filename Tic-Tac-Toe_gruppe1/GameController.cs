@@ -11,7 +11,7 @@ namespace Tic_Tac_Toe_gruppe1
         private GameBoardModel spielfeld;
         private Spieler[] spieler;
         private int aktuellerSpielerIndex;
-        private Protokoll protokoll = new Protokoll();
+        private TicTacToeApp.Protokoll protokoll = new TicTacToeApp.Protokoll();
         private GameView view = new GameView();
 
         public GameController(int size)
@@ -21,8 +21,9 @@ namespace Tic_Tac_Toe_gruppe1
             aktuellerSpielerIndex = 0;
         }
 
-        public void Starten()
+        public void Starten(int size)
         {
+            protokoll.SpielStarten(size);  // Spielfeldgröße in das Protokoll schreiben
             bool spielLaufend = true;
             while (spielLaufend)
             {
@@ -47,6 +48,7 @@ namespace Tic_Tac_Toe_gruppe1
                 if (spielfeld.PruefeGewinner(aktuellerSpieler.Symbol))
                 {
                     view.UpdateView(spielfeld);
+                    protokoll.SpielBeenden(aktuellerSpieler);
                     Console.WriteLine($"{aktuellerSpieler.Name} hat gewonnen!");
                     spielLaufend = false;
                 }

@@ -7,7 +7,7 @@
             Console.Write("Spielfeldgröße wählen: ");
             int size = int.Parse(Console.ReadLine());
             GameController spiel = new GameController(size);
-            spiel.Starten();
+            spiel.Starten(size);
         }
     }
 }

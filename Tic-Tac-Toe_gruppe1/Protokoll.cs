@@ -1,19 +1,75 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using Tic_Tac_Toe_gruppe1;
 
-namespace Tic_Tac_Toe_gruppe1
+namespace TicTacToeApp
 {
-    internal class Protokoll
+    public class Protokoll
     {
-        private List<Zug> spielverlauf = new List<Zug>();
-
-        public void Speichern(Zug zug)
+        // Funktion zum Speichern eines Zuges in der Datei
+        internal void Speichern(Zug zug)
         {
-            spielverlauf.Add(zug);
-            File.AppendAllText("protokoll.txt", $"{zug.Spieler.Name} setzte auf ({zug.Row}, {zug.Col}) um {zug.Zeitstempel}\n");
+            try
+            {
+                // Bestimmen des Pfads zum "Documents"-Ordner des Benutzers
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                // Erstellen des vollständigen Dateipfads
+                string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+
+                // Erstellen des Protokolltexts für den Zug
+                string protokollText = $"{zug.Spieler.Name} setzte auf ({zug.Row}, {zug.Col}) um {zug.Zeitstempel}\n";
+
+                // Den Text an die Datei anhängen
+                File.AppendAllText(filePath, protokollText);
+
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Speichern des Zugs: {ex.Message}");
+            }
+        }
+
+        // Funktion zum Speichern des Spielstarts
+        internal void SpielStarten(int size)
+        {
+            try
+            {
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+
+                // Protokolltext für den Spielstart
+                string protokollText = $"Spiel gestartet mit Spielfeldgröße {size}x{size}\n";
+
+                File.AppendAllText(filePath, protokollText);
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Protokollieren des Spielstarts: {ex.Message}");
+            }
+        }
+
+        // Funktion zum Speichern des Spielendes und des Gewinners
+        internal void SpielBeenden(Spieler gewinner)
+        {
+            try
+            {
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+
+                // Protokolltext für das Spielende
+                string protokollText = gewinner == null ? "Spiel endete mit Unentschieden.\n" : $"{gewinner.Name} hat gewonnen!\n--------------------";
+
+                File.AppendAllText(filePath, protokollText);
+                Console.WriteLine($"Gesamte Spiel wurde protokolliert: {filePath}");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Protokollieren des Spielendes: {ex.Message}");
+            }
         }
     }
 }
