@@ -8,74 +8,85 @@ namespace Tic_Tac_Toe_gruppe1
 {
     public class GameBoardModel
     {
+            private char[,] board;
+            public int Groesse { get; private set; }
+            private int siegBedingung;
 
-        private char[,] board;
-        private int groesse;
-
-        public GameBoardModel(int size)
-        {
-            groesse = size;
-            board = new char[size, size];
-            for (int i = 0; i < size; i++)
-                for (int j = 0; j < size; j++)
-                    board[i, j] = '.'; // Initialisierung mit Platzhaltern
-        }
-
-        public char GetCell(int row, int col) => board[row, col];
-
-        public void SetCell(int row, int col, char symbol) => board[row, col] = symbol;
-
-        public bool ValidateMove(int row, int col) => board[row, col] == '.';
-
-        public bool PruefeGewinner(char symbol)
-        {
-            for (int i = 0; i < groesse; i++)
+            public GameBoardModel(int size)
             {
-                if (CheckRow(i, symbol) || CheckCol(i, symbol)) return true;
+                Groesse = size;
+                board = new char[size, size];
+
+                for (int i = 0; i < size; i++)
+                    for (int j = 0; j < size; j++)
+                        board[i, j] = '.'; // Initialisierung mit Platzhaltern
+
+                siegBedingung = (size == 3) ? 3 : 4; // 3 gleiche für 3x3, 4 gleiche für 5x5 und 7x7
             }
-            return CheckDiagonals(symbol);
-        }
 
-        private bool CheckRow(int row, char symbol)
-        {
-            for (int col = 0; col < groesse; col++)
-                if (board[row, col] != symbol) return false;
-            return true;
-        }
+            public char GetCell(int row, int col) => board[row, col];
 
-        private bool CheckCol(int col, char symbol)
-        {
-            for (int row = 0; row < groesse; row++)
-                if (board[row, col] != symbol) return false;
-            return true;
-        }
+            public void SetCell(int row, int col, char symbol) => board[row, col] = symbol;
 
-        private bool CheckDiagonals(char symbol)
+            public bool ValidateMove(int row, int col) => board[row, col] == '.';
+
+        public bool PruefeGewinner(char symbol, int siegBedingung)
         {
-            bool diag1 = true, diag2 = true;
-            for (int i = 0; i < groesse; i++)
+            // Zeilen, Spalten und Diagonalen prüfen
+            for (int i = 0; i < Groesse; i++)
             {
-                if (board[i, i] != symbol) diag1 = false;
-                if (board[i, groesse - 1 - i] != symbol) diag2 = false;
+                if (CheckLine(i, 0, 0, 1, symbol, siegBedingung) || // Zeilenprüfung
+                    CheckLine(0, i, 1, 0, symbol, siegBedingung))   // Spaltenprüfung
+                {
+                    return true;
+                }
             }
-            return diag1 || diag2;
+
+            // Diagonalen prüfen
+            return CheckLine(0, 0, 1, 1, symbol, siegBedingung) || // Hauptdiagonale
+                   CheckLine(0, Groesse - 1, 1, -1, symbol, siegBedingung); // Nebendiagonale
+        }
+
+        private bool CheckLine(int startX, int startY, int stepX, int stepY, char symbol, int siegBedingung)
+        {
+            int count = 0;
+            int x = startX, y = startY;
+
+            while (x < Groesse && y < Groesse && y >= 0)
+            {
+                if (board[x, y] == symbol)
+                {
+                    count++;
+                    if (count == siegBedingung) return true; // Siegbedingung erfüllt
+                }
+                else
+                {
+                    count = 0; // Serie unterbrochen
+                }
+
+                x += stepX;
+                y += stepY;
+            }
+
+            return false;
         }
 
         public void DisplayBoard()
-        {
-            Console.Write("  ");
-            for (int i = 0; i < groesse; i++) Console.Write(i + " ");
-            Console.WriteLine();
-
-            for (int i = 0; i < groesse; i++)
             {
-                Console.Write(i + " ");
-                for (int j = 0; j < groesse; j++)
-                {
-                    Console.Write(board[i, j] + " ");
-                }
+                Console.Write("  ");
+                for (int i = 0; i < Groesse; i++) Console.Write(i + " ");
                 Console.WriteLine();
+
+                for (int i = 0; i < Groesse; i++)
+                {
+                    Console.Write(i + " ");
+                    for (int j = 0; j < Groesse; j++)
+                    {
+                        Console.Write(board[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
             }
-        }
     }
 }
+
