@@ -60,7 +60,7 @@ namespace TicTacToeApp
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
 
                 // Protokolltext für das Spielende
-                string protokollText = gewinner == null ? "Spiel endete mit Unentschieden.\n" : $"{gewinner.Name} hat gewonnen!\n--------------------";
+                string protokollText = gewinner == null ? "Spiel endete mit Unentschieden.\n" : $"{gewinner.Name} hat gewonnen!\n";
 
                 File.AppendAllText(filePath, protokollText);
                 Console.WriteLine($"Gesamte Spiel wurde protokolliert: {filePath}");
@@ -69,6 +69,22 @@ namespace TicTacToeApp
             catch (Exception ex)
             {
                 Console.WriteLine($"Fehler beim Protokollieren des Spielendes: {ex.Message}");
+            }
+        }
+        internal void ZeitProtokollieren(string verstricheneZeit)
+        {
+            try
+            {
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+
+                string protokollText = $"Gesamtspielzeit: {verstricheneZeit}\n----------------------";
+                File.AppendAllText(filePath, protokollText);
+                Console.WriteLine($"Gesamtspielzeit protokolliert: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Protokollieren der Spielzeit: {ex.Message}");
             }
         }
     }

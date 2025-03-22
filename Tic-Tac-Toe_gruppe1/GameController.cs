@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicTacToeApp;
 
 namespace Tic_Tac_Toe_gruppe1
 {
@@ -13,17 +14,20 @@ namespace Tic_Tac_Toe_gruppe1
         private int aktuellerSpielerIndex;
         private TicTacToeApp.Protokoll protokoll = new TicTacToeApp.Protokoll();
         private GameView view = new GameView();
+        private SpielTimer timer;  // Deine eigene Timer-Klasse
 
         public GameController(int size)
         {
             spielfeld = new GameBoardModel(size);
             spieler = new Spieler[] { new Spieler("Spieler 1", 'X'), new Spieler("Spieler 2", 'O') };
             aktuellerSpielerIndex = 0;
+            timer = new SpielTimer();
         }
 
         public void Starten(int size)
         {
             protokoll.SpielStarten(size);  // Spielfeldgröße in das Protokoll schreiben
+            timer.Starten();
             bool spielLaufend = true;
             while (spielLaufend)
             {
@@ -49,13 +53,19 @@ namespace Tic_Tac_Toe_gruppe1
                 {
                     view.UpdateView(spielfeld);
                     protokoll.SpielBeenden(aktuellerSpieler);
+                    timer.Stoppen();
+                    protokoll.ZeitProtokollieren(timer.Erhalten());
                     Console.WriteLine($"{aktuellerSpieler.Name} hat gewonnen!");
                     spielLaufend = false;
                 }
-                else if (IstUnentschieden())
+                else if (IstUnentschieden(size))
                 {
                     view.UpdateView(spielfeld);
+                    protokoll.SpielBeenden(null);
+                    timer.Stoppen();
+                    protokoll.ZeitProtokollieren(timer.Erhalten());
                     Console.WriteLine("Unentschieden!");
+                    
                     spielLaufend = false;
                 }
                 else
@@ -65,13 +75,21 @@ namespace Tic_Tac_Toe_gruppe1
             }
         }
 
-        private bool IstUnentschieden()
+        private bool IstUnentschieden(int size)
         {
-            for (int i = 0; i < spielfeld.GetCell(0, 0).ToString().Length; i++)
-                for (int j = 0; j < spielfeld.GetCell(0, 0).ToString().Length; j++)
-                    if (spielfeld.GetCell(i, j) == '.') return false;
-            return true;
+            for (int i = 0; i <size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (spielfeld.GetCell(i, j) == '.') // Überprüft, ob ein Feld leer ist
+                    {
+                        return false;  // Wenn noch ein leeres Feld existiert, ist es kein Unentschieden
+                    }
+                }
+            }
+            return true;  // Alle Felder sind besetzt, daher Unentschieden
         }
+
 
     }
 
