@@ -1,11 +1,26 @@
-﻿using System;
-using System.IO;
-using Tic_Tac_Toe_gruppe1;
+﻿using Tic_Tac_Toe_gruppe1;
 
 namespace TicTacToeApp
 {
     public class Protokoll
     {
+        // Die einzige Instanz der Protokoll-Klasse
+        private static Protokoll _instance;
+
+        // Privater Konstruktor, um die Instanz nicht von außen erstellen zu können
+        private Protokoll() { }
+
+        // Statische Methode, um auf die einzige Instanz zuzugreifen
+        public static Protokoll GetInstance()
+        {
+            // Wenn die Instanz noch nicht existiert, erstelle sie
+            if (_instance == null)
+            {
+                _instance = new Protokoll();
+            }
+            return _instance;
+        }
+
         // Funktion zum Speichern eines Zuges in der Datei
         internal void Speichern(Zug zug)
         {
@@ -23,7 +38,6 @@ namespace TicTacToeApp
                 // Den Text an die Datei anhängen
                 File.AppendAllText(filePath, protokollText);
 
-                
             }
             catch (Exception ex)
             {
@@ -43,7 +57,7 @@ namespace TicTacToeApp
                 string protokollText = $"Spiel gestartet mit Spielfeldgröße {size}x{size}\n";
 
                 File.AppendAllText(filePath, protokollText);
-                
+
             }
             catch (Exception ex)
             {
@@ -71,6 +85,7 @@ namespace TicTacToeApp
                 Console.WriteLine($"Fehler beim Protokollieren des Spielendes: {ex.Message}");
             }
         }
+
         internal void ZeitProtokollieren(string verstricheneZeit)
         {
             try
@@ -80,7 +95,7 @@ namespace TicTacToeApp
 
                 string protokollText = $"Gesamtspielzeit: {verstricheneZeit}\n----------------------";
                 File.AppendAllText(filePath, protokollText);
-                
+
             }
             catch (Exception ex)
             {
@@ -96,16 +111,13 @@ namespace TicTacToeApp
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
 
                 string protokollText = $"{zug.Spieler.Name} versuchte eine ungültige Eingabe auf ({zug.Row}, {zug.Col}) um {zug.Zeitstempel}!\n";
-                
-                File.AppendAllText(filePath, protokollText);
-                
 
+                File.AppendAllText(filePath, protokollText);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Fehler beim Protokollieren der ungültigen Eingabe: {ex.Message}");
             }
         }
-
     }
 }

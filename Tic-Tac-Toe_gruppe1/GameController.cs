@@ -12,7 +12,7 @@ namespace Tic_Tac_Toe_gruppe1
         private GameBoardModel spielfeld;
         private Spieler[] spieler;
         private int aktuellerSpielerIndex;
-        private TicTacToeApp.Protokoll protokoll = new TicTacToeApp.Protokoll();
+        private TicTacToeApp.Protokoll protokoll;
         private GameView view = new GameView();
         private SpielTimer timer;
         private int siegBedingung;
@@ -20,6 +20,7 @@ namespace Tic_Tac_Toe_gruppe1
 
         public GameController()
         {
+            protokoll = TicTacToeApp.Protokoll.GetInstance(); // Hole die Singleton-Instanz
             InitialisiereSpiel();
         }
 
@@ -110,7 +111,7 @@ namespace Tic_Tac_Toe_gruppe1
 
                 // Bestätigen, ob der Zug richtig war
                 Console.WriteLine($"Zug {aktuellerSpieler.Symbol} auf ({(char)('a' + col)}{row + 1}) gemacht.");
-                Console.WriteLine("War der Zug richtig? (y/n)");
+                Console.WriteLine("Bestätigen? (y/n)");
 
                 string bestatigung = Console.ReadLine().ToLower();
 
@@ -159,6 +160,8 @@ namespace Tic_Tac_Toe_gruppe1
 
             if (letzterZug != null)
             {
+                // Rückgängig gemachten Zug protokollieren
+                protokoll.UngueltigeEingabe(letzterZug);  // Oder eine Methode, die das Zurücksetzen protokolliert
                 spielfeld.SetCell(letzterZug.Row, letzterZug.Col, '.');
                 Console.WriteLine("Letzter Zug wurde rückgängig gemacht.");
             }
@@ -167,6 +170,7 @@ namespace Tic_Tac_Toe_gruppe1
                 Console.WriteLine("Kein Zug zum Rückgängig machen verfügbar.");
             }
         }
+
 
         private bool IstUnentschieden()
         {
