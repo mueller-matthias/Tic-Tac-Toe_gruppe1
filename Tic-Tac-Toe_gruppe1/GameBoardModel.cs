@@ -8,27 +8,27 @@ namespace Tic_Tac_Toe_gruppe1
 {
     public class GameBoardModel
     {
-            private char[,] board;
-            public int Groesse { get; private set; }
-            private int siegBedingung;
+        private char[,] board;
+        public int Groesse { get; private set; }
+        private int siegBedingung;
 
-            public GameBoardModel(int size)
-            {
-                Groesse = size;
-                board = new char[size, size];
+        public GameBoardModel(int size)
+        {
+            Groesse = size;
+            board = new char[size, size];
 
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        board[i, j] = '.'; // Initialisierung mit Platzhaltern
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
+                    board[i, j] = '.'; // Initialisierung mit Platzhaltern
 
-                siegBedingung = (size == 3) ? 3 : 4; // 3 gleiche für 3x3, 4 gleiche für 5x5 und 7x7
-            }
+            siegBedingung = (size == 3) ? 3 : 4; // 3 gleiche für 3x3, 4 gleiche für 5x5 und 7x7
+        }
 
-            public char GetCell(int row, int col) => board[row, col];
+        public char GetCell(int row, int col) => board[row, col];
 
-            public void SetCell(int row, int col, char symbol) => board[row, col] = symbol;
+        public void SetCell(int row, int col, char symbol) => board[row, col] = symbol;
 
-            public bool ValidateMove(int row, int col) => board[row, col] == '.';
+        public bool ValidateMove(int row, int col) => board[row, col] == '.';
 
         public bool PruefeGewinner(char symbol, int siegBedingung)
         {
@@ -71,22 +71,53 @@ namespace Tic_Tac_Toe_gruppe1
             return false;
         }
 
+        // Anpassung der Anzeige des Spielfelds
         public void DisplayBoard()
+        {
+            // Spaltenüberschrift (Buchstaben a, b, c, ...)
+            Console.Write("    ");
+            for (int i = 0; i < Groesse; i++)
             {
-                Console.Write("  ");
-                for (int i = 0; i < Groesse; i++) Console.Write(i + " ");
-                Console.WriteLine();
-
-                for (int i = 0; i < Groesse; i++)
-                {
-                    Console.Write(i + " ");
-                    for (int j = 0; j < Groesse; j++)
-                    {
-                        Console.Write(board[i, j] + " ");
-                    }
-                    Console.WriteLine();
-                }
+                Console.Write((char)('a' + i) + " "); // Spalten mit Buchstaben
             }
+            Console.WriteLine();
+
+            // Zeilen (Zahlen 1, 2, 3, ...)
+            for (int i = 0; i < Groesse; i++)
+            {
+                Console.Write((i + 1) + "   "); // Zeilenanzeige (1, 2, 3, ...)
+                for (int j = 0; j < Groesse; j++)
+                {
+                    Console.Write(board[i, j] + " "); // Spielfeld-Inhalt
+                }
+                Console.WriteLine();
+            }
+        }
+
+        // Validierung der Eingabe in der Form "a1", "b2", "c3", etc.
+        public bool ValidateInput(string input, out int row, out int col)
+        {
+            row = -1;
+            col = -1;
+
+            if (input.Length < 2) return false;
+
+            // Zeile und Spalte extrahieren
+            char columnChar = Char.ToLower(input[0]);
+            if (columnChar < 'a' || columnChar > 'z') return false; // ungültiger Buchstabe
+
+            // Umwandlung der Buchstaben in die Spaltennummer (z.B. 'a' -> 0, 'b' -> 1, ...)
+            col = columnChar - 'a';
+            if (col >= Groesse) return false; // Spalte außerhalb der Spielfeldgröße
+
+            if (!int.TryParse(input.Substring(1), out row)) return false;
+
+            row--; // Umwandlung in 0-basierten Index
+            if (row < 0 || row >= Groesse) return false; // Zeile außerhalb der Spielfeldgröße
+
+            return true;
+        }
     }
+
 }
 
