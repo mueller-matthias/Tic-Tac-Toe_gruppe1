@@ -16,6 +16,7 @@ namespace Tic_Tac_Toe_gruppe1
         private GameView view = new GameView();
         private SpielTimer timer;
         private int siegBedingung;
+        private IGameStrategy gameStrategy;
 
         public GameController()
         {
@@ -29,19 +30,29 @@ namespace Tic_Tac_Toe_gruppe1
             {
                 Console.WriteLine("Wählen Sie die Spielfeldgröße: 3x3, 5x5 oder 7x7: (bitte 3, 5 oder 7 eingeben)");
                 string input = Console.ReadLine();
-                if (input == "3" || input == "5" || input == "7")
+                if (input == "3")
                 {
-                    size = int.Parse(input);
+                    gameStrategy = new ThreeByThreeStrategy(); // Strategy für 3x3 Spielfeld
+                    break;
+                }
+                else if (input == "5")
+                {
+                    gameStrategy = new FiveByFiveStrategy(); // Strategy für 5x5 Spielfeld
+                    break;
+                }
+                else if (input == "7")
+                {
+                    gameStrategy = new SevenBySevenStrategy(); // Strategy für 7x7 Spielfeld
                     break;
                 }
                 Console.WriteLine("Ungültige Eingabe! Bitte geben Sie 3, 5 oder 7 ein.");
             }
 
-            spielfeld = new GameBoardModel(size);
+            spielfeld = new GameBoardModel(gameStrategy.GetBoardSize()); // Spielfeldgröße aus der gewählten Strategie
             spieler = new Spieler[] { new Spieler("Spieler 1", 'X'), new Spieler("Spieler 2", 'O') };
             aktuellerSpielerIndex = 0;
             timer = new SpielTimer();
-            siegBedingung = (size == 3) ? 3 : 4;
+            siegBedingung = (spielfeld.Groesse == 3) ? 3 : 4;
         }
 
         public void Starten()
@@ -141,11 +152,6 @@ namespace Tic_Tac_Toe_gruppe1
             FrageNachNeustart();
         }
 
-
-
-
-
-
         private void UndoLetzterZug()
         {
             Spieler aktuellerSpieler = spieler[aktuellerSpielerIndex];
@@ -162,7 +168,6 @@ namespace Tic_Tac_Toe_gruppe1
             }
         }
 
-
         private bool IstUnentschieden()
         {
             for (int row = 0; row < spielfeld.Groesse; row++)
@@ -177,7 +182,6 @@ namespace Tic_Tac_Toe_gruppe1
             }
             return true; // Alle Felder sind belegt, also Unentschieden
         }
-
 
         private void FrageNachNeustart()
         {
