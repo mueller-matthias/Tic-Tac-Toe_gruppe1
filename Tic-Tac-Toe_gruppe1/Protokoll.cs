@@ -80,12 +80,32 @@ namespace TicTacToeApp
 
                 string protokollText = $"Gesamtspielzeit: {verstricheneZeit}\n----------------------";
                 File.AppendAllText(filePath, protokollText);
-                Console.WriteLine($"Gesamtspielzeit protokolliert: {filePath}");
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Fehler beim Protokollieren der Spielzeit: {ex.Message}");
             }
         }
+
+        internal void UngueltigeEingabe(Zug zug)
+        {
+            try
+            {
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+
+                string protokollText = $"{zug.Spieler.Name} versuchte eine ungültige Eingabe auf ({zug.Row}, {zug.Col}) um {zug.Zeitstempel}!\n";
+                
+                File.AppendAllText(filePath, protokollText);
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Protokollieren der ungültigen Eingabe: {ex.Message}");
+            }
+        }
+
     }
 }

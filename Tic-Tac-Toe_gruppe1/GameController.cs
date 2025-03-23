@@ -27,7 +27,7 @@ namespace Tic_Tac_Toe_gruppe1
             int size;
             while (true)
             {
-                Console.WriteLine("Wählen Sie die Spielfeldgröße (3x3, 5x5, 7x7):");
+                Console.WriteLine("Wählen Sie die Spielfeldgröße: 3x3, 5x5 oder 7x7: (bitte 3, 5 oder 7 eingeben)");
                 string input = Console.ReadLine();
                 if (input == "3" || input == "5" || input == "7")
                 {
@@ -63,6 +63,7 @@ namespace Tic_Tac_Toe_gruppe1
                     col = HoleEingabe("Spalte eingeben: ");
 
                     if (spielfeld.ValidateMove(row, col)) break;
+                    protokoll.UngueltigeEingabe(new Zug(aktuellerSpieler, row, col));  // Hier wird das ungültige Eingabeprotokoll geschrieben
                     Console.WriteLine("Ungültiger Zug! Feld bereits belegt.");
                 }
 
