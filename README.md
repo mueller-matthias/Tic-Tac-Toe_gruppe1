@@ -9,4 +9,4 @@
 - Gewinner, Verlierer oder Unentschieden-Erkennung - Sobald ein Spieler eine 3-Ketter bzw. 4-Kette erreicht, wird automatisch das Endergebnis verkündet.
 - Protokollierung - Gesamtes Spiel wir in einer externen Datei protokolliert.
 
-- 24.03.2025
+24.03.2025
