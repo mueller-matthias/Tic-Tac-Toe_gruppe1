@@ -66,7 +66,7 @@ namespace TicTacToeApp
         /// Diese Methode wird direkt am Start aufgerufen. Sie Dokumentiert den Start und mit welcher Spielfeldgrösse das Match gestartet wurde.
         /// </summary>
         /// <param name="size">Grösse des Spielfeldes</param>
-        internal void ProtokolliereSpielStart(int size)
+        public void ProtokolliereSpielStart(int size)
         {
             try
             {

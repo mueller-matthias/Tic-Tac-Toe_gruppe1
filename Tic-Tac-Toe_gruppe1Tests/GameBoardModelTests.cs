@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1.Tests
 {
-        [TestClass()]
+        [TestClass]
         public class GameBoardModelTests
         {
-            [TestMethod()]
+            [TestMethod]
             public void GetCellTest()
             {
                 // Arrange
@@ -24,7 +24,7 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                 Assert.AreEqual('.', result);
             }
 
-            [TestMethod()]
+            [TestMethod]
             public void SetCellTest()
             {
                 // Arrange
@@ -38,7 +38,7 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                 Assert.AreEqual('X', result);
             }
 
-            [TestMethod()]
+            [TestMethod]
             public void ValidateMoveTest_ValidMove()
             {
                 // Arrange
@@ -51,7 +51,7 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                 Assert.IsTrue(isValid);
             }
 
-            [TestMethod()]
+            [TestMethod]
             public void ValidateMoveTest_InvalidMove()
             {
                 // Arrange
@@ -65,7 +65,7 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                 Assert.IsFalse(isValid);
             }
 
-            [TestMethod()]
+            [TestMethod]
             public void PruefeGewinnerTest_WinningRow()
             {
                 // Arrange
@@ -81,7 +81,7 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                 Assert.IsTrue(hasWon);
             }
 
-            [TestMethod()]
+            [TestMethod]
             public void PruefeGewinnerTest_NoWin()
             {
                 // Arrange
@@ -97,7 +97,7 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                 Assert.IsFalse(hasWon);
             }
 
-            [TestMethod()]
+            [TestMethod]
             public void ValidateInputTest_ValidInput()
             {
                 // Arrange
@@ -113,7 +113,7 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                 Assert.AreEqual(1, col);
             }
 
-            [TestMethod()]
+            [TestMethod]
             public void ValidateInputTest_InvalidInput()
             {
                 // Arrange
