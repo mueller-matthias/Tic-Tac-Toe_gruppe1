@@ -37,7 +37,7 @@ namespace TicTacToeApp
         /// 5. Zuletzt wird der ProtokollText in die Datei gespeichert.
         /// </summary>
         /// <param name="zug"></param>
-        internal void Protokollieren(Zug zug)
+        public void Protokollieren(Zug zug)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace TicTacToeApp
         /// Sobald das Spiel beendet ist, wird der Name des Gewinners in dem Protokoll festgehalten.
         /// </summary>
         /// <param name="gewinner">Name des Gewinners wird übergeben. Falls dieser "null" ist, bedeutet das, dass es ein Unentschieden war.</param>
-        internal void ProtokolliereSpielEnde(Spieler gewinner)
+        public void ProtokolliereSpielEnde(Spieler gewinner)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace TicTacToeApp
         /// Sobald das Match vorbei ist, wird die verstrichene Zeit im Protokoll niedergeschrieben.
         /// </summary>
         /// <param name="verstricheneZeit">Die Zeit, welche seit dem Start des Spieles gestoppt wurde.</param>
-        internal void ZeitProtokollieren(string verstricheneZeit)
+        public void ZeitProtokollieren(string verstricheneZeit)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace TicTacToeApp
         /// Sobald eine ungültige Eingabe gemacht wird, wird diese Protokolliert.
         /// </summary>
         /// <param name="zug">Informationen des Zug's werden übergeben</param>
-        internal void ProtokolliereUngueltigeEingabe(Zug zug)
+        public void ProtokolliereUngueltigeEingabe(Zug zug)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace TicTacToeApp
         /// Diese Methode wird aufgerugen, wenn der Zug bestätigt wird. So kann man das Spiel im Protokoll besser nachvollziehen.
         /// </summary>
         /// <param name="zug">Informationen des Zug's werden übergeben.</param>
-        internal void ProtokolliereBestaetigung(Zug zug)
+        public void ProtokolliereBestaetigung(Zug zug)
         {
             try
             {
@@ -172,7 +172,7 @@ namespace TicTacToeApp
         /// Diese Methode wird aufgerufen, wenn der Spieler seinen Zug nicht bestätigt. So können wir sicherstellen, dass man im Protokoll alles mitverfolgen kann.
         /// </summary>
         /// <param name="zug">Informationen des Zug's werden übergeben.</param>
-        internal void ProtokolliereNichtBestaetigung(Zug zug)
+        public void ProtokolliereNichtBestaetigung(Zug zug)
         {
             try
             {
