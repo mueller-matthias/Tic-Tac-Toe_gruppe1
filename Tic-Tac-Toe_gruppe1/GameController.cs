@@ -82,7 +82,7 @@ namespace Tic_Tac_Toe_gruppe1
                             {
                                 break;
                             }
-                            protokoll.UngueltigeEingabe(new Zug(aktuellerSpieler, row, col));
+                            protokoll.ProtokolliereUngueltigeEingabe(new Zug(aktuellerSpieler, row, col));
                             Console.WriteLine("Ungültiger Zug! Feld bereits belegt.");
                         }
                         else
