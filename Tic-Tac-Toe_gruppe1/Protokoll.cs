@@ -4,16 +4,23 @@ namespace TicTacToeApp
 {
     public class Protokoll
     {
-        // Die einzige Instanz der Protokoll-Klasse
+        /// <summary>
+        /// Instanz wird erstellt.
+        /// </summary>
         private static Protokoll _instance;
 
-        // Privater Konstruktor, um die Instanz nicht von außen erstellen zu können
+        /// <summary>
+        /// Privater Konstruktor, um die Instanz nicht von außen erstellen zu können
+        /// </summary>
         private Protokoll() { }
 
-        // Statische Methode, um auf die einzige Instanz zuzugreifen
+        /// <summary>
+        /// Statische Methode, um auf die einzige Instanz zuzugreifen. Wenn keine Instanz existiert, sollte eine ersellt werden.
+        /// </summary>
+        /// <returns>Instanz</returns>
         public static Protokoll GetInstance()
         {
-            // Wenn die Instanz noch nicht existiert, erstelle sie
+            
             if (_instance == null)
             {
                 _instance = new Protokoll();
@@ -21,7 +28,15 @@ namespace TicTacToeApp
             return _instance;
         }
 
-        // Funktion zum Protokollieren eines Zuges in der Datei
+        /// <summary>
+        /// Sobald man einen Zug macht, wird diese Methode aufgerufen und dokumentiert den Zug.
+        /// 1. Pfad zum Dokumente-Ordner wird gesucht und in Variable gespeichert.
+        /// 2. Variable mit Pfad und Dateiname wird erstellt.
+        /// 3. Koordinaten werden in passendes Format umgewandelt und in "result" gespeichert.
+        /// 4. Protokolltext wird zusammengeführt und auch in eine Variable gespeichert.
+        /// 5. Zuletzt wird der ProtokollText in die Datei gespeichert.
+        /// </summary>
+        /// <param name="zug"></param>
         internal void Protokollieren(Zug zug)
         {
             try
@@ -47,7 +62,10 @@ namespace TicTacToeApp
             }
         }
 
-        // Funktion zum Protokollieren des Spielstarts
+        /// <summary>
+        /// Diese Methode wird direkt am Start aufgerufen. Sie Dokumentiert den Start und mit welcher Spielfeldgrösse das Match gestartet wurde.
+        /// </summary>
+        /// <param name="size">Grösse des Spielfeldes</param>
         internal void ProtokolliereSpielStart(int size)
         {
             try
@@ -67,7 +85,10 @@ namespace TicTacToeApp
             }
         }
 
-        // Funktion zum Protokollieren des Spielendes und des Gewinners
+        /// <summary>
+        /// Sobald das Spiel beendet ist, wird der Name des Gewinners in dem Protokoll festgehalten.
+        /// </summary>
+        /// <param name="gewinner">Name des Gewinners wird übergeben. Falls dieser "null" ist, bedeutet das, dass es ein Unentschieden war.</param>
         internal void ProtokolliereSpielEnde(Spieler gewinner)
         {
             try
@@ -87,7 +108,10 @@ namespace TicTacToeApp
                 Console.WriteLine($"Fehler beim Protokollieren des Spielendes: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Sobald das Match vorbei ist, wird die verstrichene Zeit im Protokoll niedergeschrieben.
+        /// </summary>
+        /// <param name="verstricheneZeit">Die Zeit, welche seit dem Start des Spieles gestoppt wurde.</param>
         internal void ZeitProtokollieren(string verstricheneZeit)
         {
             try
@@ -104,7 +128,10 @@ namespace TicTacToeApp
                 Console.WriteLine($"Fehler beim Protokollieren der Spielzeit: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Sobald eine ungültige Eingabe gemacht wird, wird diese Protokolliert.
+        /// </summary>
+        /// <param name="zug">Informationen des Zug's werden übergeben</param>
         internal void ProtokolliereUngueltigeEingabe(Zug zug)
         {
             try
@@ -121,7 +148,10 @@ namespace TicTacToeApp
                 Console.WriteLine($"Fehler beim Protokollieren der ungültigen Eingabe: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Diese Methode wird aufgerugen, wenn der Zug bestätigt wird. So kann man das Spiel im Protokoll besser nachvollziehen.
+        /// </summary>
+        /// <param name="zug">Informationen des Zug's werden übergeben.</param>
         internal void ProtokolliereBestaetigung(Zug zug)
         {
             try
@@ -138,7 +168,10 @@ namespace TicTacToeApp
                 Console.WriteLine($"Fehler beim Protokollieren der ungültigen Eingabe: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Diese Methode wird aufgerufen, wenn der Spieler seinen Zug nicht bestätigt. So können wir sicherstellen, dass man im Protokoll alles mitverfolgen kann.
+        /// </summary>
+        /// <param name="zug">Informationen des Zug's werden übergeben.</param>
         internal void ProtokolliereNichtBestaetigung(Zug zug)
         {
             try
@@ -156,17 +189,19 @@ namespace TicTacToeApp
             }
         }
 
+        /// <summary>
+        /// Diese Methode wandelt die Parameter col und row wieder in unseres verständliches Format. 
+        /// Bislang erscheint in der Protokoll-Datei z.B. (3/3) für c2. Dies ist allerdings schwierig zum Nachvollziehen. 
+        /// Also ändert diese Methode die Koordinaten wieder zurück. 
+        /// </summary>
+        /// <param name="col">Übernimmt den Platz im Array der x-Achse</param>
+        /// <param name="row">Übernimmt den Platz im Array der y-Achse</param>
+        /// <returns></returns>
         static string ConvertToChessNotation(int col, int row)
         {
-            // Umwandlung der Spalte (col) in einen Buchstaben (a-h)
             char column = (char)('a' + col);
-
-            // Umwandlung der Reihe (row) in die Schachreihe (1-8)
             int chessRow = row + 1;
-
             return $"{column}{chessRow}";
         }
-
     }
-
     }
