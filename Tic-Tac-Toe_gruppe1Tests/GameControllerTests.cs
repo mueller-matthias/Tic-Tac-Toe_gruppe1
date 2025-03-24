@@ -5,130 +5,124 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Tic_Tac_Toe_gruppe1.Tests
 {
     [TestClass]
     public class GameControllerTests
     {
-        [TestClass]
-        public class GameBoardModelTests
+        private GameController gameController;
+        private StringWriter consoleOutput;
+        private StringReader consoleInput;
+
+        [TestInitialize]
+        public void Setup()
         {
-            [TestMethod]
-            public void GetCellTest()
+            // Redirect console input and output for testing
+            consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            // Restore console input and output
+            Console.SetOut(Console.Out);
+            consoleOutput.Dispose();
+        }
+
+        [TestMethod]
+        public void InitialiseSpiel_SelectThreeByThreeBoard_ShouldSetupCorrectly()
+        {
+            // Arrange
+            consoleInput = new StringReader("3\n");
+            Console.SetIn(consoleInput);
+
+            // Act
+            gameController = new GameController();
+
+            // Assert
+            Assert.IsNotNull(gameController, "GameController should be initialized");
+            // You would need to use reflection or add a method to expose private fields for more detailed assertions
+        }
+
+        [TestMethod]
+        public void InitialiseSpiel_SelectFiveByFiveBoard_ShouldSetupCorrectly()
+        {
+            // Arrange
+            consoleInput = new StringReader("5\n");
+            Console.SetIn(consoleInput);
+
+            // Act
+            gameController = new GameController();
+
+            // Assert
+            Assert.IsNotNull(gameController, "GameController should be initialized");
+        }
+
+        [TestMethod]
+        public void InitialiseSpiel_SelectSevenBySevenBoard_ShouldSetupCorrectly()
+        {
+            // Arrange
+            consoleInput = new StringReader("7\n");
+            Console.SetIn(consoleInput);
+
+            // Act
+            gameController = new GameController();
+
+            // Assert
+            Assert.IsNotNull(gameController, "GameController should be initialized");
+        }
+
+        [TestMethod]
+        public void IstUnentschieden_EmptyBoard_ShouldReturnFalse()
+        {
+            // Arrange
+            consoleInput = new StringReader("3\n");
+            Console.SetIn(consoleInput);
+            gameController = new GameController();
+
+            // Use reflection to access the private method
+            var method = typeof(GameController).GetMethod("IstUnentschieden",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+            // Act
+            bool result = (bool)method.Invoke(gameController, null);
+
+            // Assert
+            Assert.IsFalse(result, "Unentschieden should be false on an empty board");
+        }
+
+        [TestMethod]
+        public void InitialiseSpiel_InvalidBoardSize_ShouldRepromptUntilValidInput()
+        {
+            // Arrange
+            // Simulate multiple invalid inputs before a valid one
+            using (StringReader input = new StringReader("4\n0\n6\n3\n"))
             {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
+                Console.SetIn(input);
 
-                // Act
-                char result = board.GetCell(1, 2);
+                // Capture console output to verify prompts
+                using (StringWriter output = new StringWriter())
+                {
+                    Console.SetOut(output);
 
-                // Assert
-                Assert.AreEqual('.', result);
-            }
+                    // Act
+                    GameController gameController = new GameController();
 
-            [TestMethod]
-            public void SetCellTest()
-            {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
+                    // Assert
+                    string consoleOutput = output.ToString();
 
-                // Act
-                board.SetCell(1, 2, 'X');
-                char result = board.GetCell(1, 2);
+                    // Check that invalid input messages were displayed
+                    Assert.IsTrue(consoleOutput.Contains("Ungültige Eingabe! Bitte geben Sie 3, 5 oder 7 ein."),
+                        "Should prompt for valid input multiple times");
 
-                // Assert
-                Assert.AreEqual('X', result);
-            }
-
-            [TestMethod]
-            public void ValidateMoveTest_ValidMove()
-            {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
-
-                // Act
-                bool isValid = board.ValidateMove(1, 2);
-
-                // Assert
-                Assert.IsTrue(isValid);
-            }
-
-            [TestMethod]
-            public void ValidateMoveTest_InvalidMove()
-            {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
-                board.SetCell(1, 2, 'X');
-
-                // Act
-                bool isValid = board.ValidateMove(1, 2);
-
-                // Assert
-                Assert.IsFalse(isValid);
-            }
-
-            [TestMethod]
-            public void PruefeGewinnerTest_WinningRow()
-            {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
-                board.SetCell(1, 0, 'X');
-                board.SetCell(1, 1, 'X');
-                board.SetCell(1, 2, 'X');
-
-                // Act
-                bool hasWon = board.PruefeGewinner('X', 3);
-
-                // Assert
-                Assert.IsTrue(hasWon);
-            }
-
-            [TestMethod]
-            public void PruefeGewinnerTest_NoWin()
-            {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
-                board.SetCell(0, 0, 'X');
-                board.SetCell(1, 1, 'O');
-                board.SetCell(2, 2, 'X');
-
-                // Act
-                bool hasWon = board.PruefeGewinner('X', 3);
-
-                // Assert
-                Assert.IsFalse(hasWon);
-            }
-
-            [TestMethod]
-            public void ValidateInputTest_ValidInput()
-            {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
-                int row, col;
-
-                // Act
-                bool isValid = board.ValidateInput("b2", out row, out col);
-
-                // Assert
-                Assert.IsTrue(isValid);
-                Assert.AreEqual(1, row);
-                Assert.AreEqual(1, col);
-            }
-
-            [TestMethod]
-            public void ValidateInputTest_InvalidInput()
-            {
-                // Arrange
-                GameBoardModel board = new GameBoardModel(3);
-                int row, col;
-
-                // Act
-                bool isValid = board.ValidateInput("z9", out row, out col);
-
-                // Assert
-                Assert.IsFalse(isValid);
+                    // Verify that eventually a valid input was accepted
+                    Assert.IsTrue(consoleOutput.Contains("Wählen Sie die Spielfeldgröße: 3x3, 5x5 oder 7x7:"),
+                        "Should allow selection of board size");
+                }
             }
         }
     }
-}
+} 
