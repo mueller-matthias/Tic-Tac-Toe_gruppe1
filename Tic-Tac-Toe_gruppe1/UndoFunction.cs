@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    internal class UndoFunction
+    public class UndoFunction
     {
         private Stack<Zug> zugHistory = new Stack<Zug>();
 

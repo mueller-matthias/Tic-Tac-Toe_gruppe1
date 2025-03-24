@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    internal class Zug
+    public class Zug
     {
         public Spieler Spieler { get; }
         public int Row { get; }
