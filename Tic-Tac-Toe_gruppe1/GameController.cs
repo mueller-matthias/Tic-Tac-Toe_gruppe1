@@ -58,7 +58,7 @@ namespace Tic_Tac_Toe_gruppe1
 
             public void Starten()
             {
-                protokoll.SpielStarten(spielfeld.Groesse);
+                protokoll.ProtokolliereSpielStart(spielfeld.Groesse);
                 timer.Starten();
                 bool spielLaufend = true;
 
@@ -87,14 +87,15 @@ namespace Tic_Tac_Toe_gruppe1
                         }
                         else
                         {
-                            Console.WriteLine("Ungültige Eingabe! Bitte z.B. 'a1', 'b2' usw. eingeben (innerhalb der Spielfeldgröße).");
+                        protokoll.ProtokolliereUngueltigeEingabe(new Zug(aktuellerSpieler, row, col));
+                        Console.WriteLine("Ungültige Eingabe! Bitte z.B. 'a1', 'b2' usw. eingeben (innerhalb der Spielfeldgröße).");
                         }
                     }
 
                     // Spieler macht den Zug
                     spielfeld.SetCell(row, col, aktuellerSpieler.Symbol);
                     aktuellerSpieler.Undo.SpeichereZug(new Zug(aktuellerSpieler, row, col));
-                    protokoll.Speichern(new Zug(aktuellerSpieler, row, col));
+                    protokoll.Protokollieren(new Zug(aktuellerSpieler, row, col));
 
                     Console.WriteLine($"Zug {aktuellerSpieler.Symbol} auf ({(char)('a' + col)}{row + 1}) gemacht.");
                     Console.WriteLine("Bestätigen? (y/n) (automatisch bestätigt nach 10 Sekunden)");
@@ -110,14 +111,15 @@ namespace Tic_Tac_Toe_gruppe1
                         spielfeld.SetCell(row, col, '.');
                         aktuellerSpieler.Undo.LadeLetztenZug(); // Entfernt den letzten gespeicherten Zug
                         Console.WriteLine("Zug wurde rückgängig gemacht. Versuchen Sie es erneut.");
+                        protokoll.ProtokolliereNichtBestaetigung(new Zug(aktuellerSpieler, row, col));
                         continue; // Wiederhole den Zug
                     }
-
-                    // Überprüfen, ob es einen Gewinner gibt
-                    if (spielfeld.PruefeGewinner(aktuellerSpieler.Symbol, siegBedingung))
+                    protokoll.ProtokolliereBestaetigung(new Zug(aktuellerSpieler, row, col));
+                // Überprüfen, ob es einen Gewinner gibt
+                if (spielfeld.PruefeGewinner(aktuellerSpieler.Symbol, siegBedingung))
                     {
                         view.UpdateView(spielfeld);
-                        protokoll.SpielBeenden(aktuellerSpieler);
+                        protokoll.ProtokolliereSpielEnde(aktuellerSpieler);
                         timer.Stoppen();
                         protokoll.ZeitProtokollieren(timer.Erhalten());
                         Console.WriteLine($"{aktuellerSpieler.Name} hat gewonnen!");
@@ -126,7 +128,7 @@ namespace Tic_Tac_Toe_gruppe1
                     else if (IstUnentschieden())
                     {
                         view.UpdateView(spielfeld);
-                        protokoll.SpielBeenden(null);
+                        protokoll.ProtokolliereSpielEnde(null);
                         timer.Stoppen();
                         protokoll.ZeitProtokollieren(timer.Erhalten());
                         Console.WriteLine("Unentschieden!");
@@ -149,7 +151,7 @@ namespace Tic_Tac_Toe_gruppe1
                 if (letzterZug != null)
                 {
                     // Rückgängig gemachten Zug protokollieren
-                    protokoll.UngueltigeEingabe(letzterZug);  // Oder eine Methode, die das Zurücksetzen protokolliert
+                    protokoll.ProtokolliereUngueltigeEingabe(letzterZug);  // Oder eine Methode, die das Zurücksetzen protokolliert
                     spielfeld.SetCell(letzterZug.Row, letzterZug.Col, '.');
                     Console.WriteLine("Letzter Zug wurde rückgängig gemacht.");
                 }

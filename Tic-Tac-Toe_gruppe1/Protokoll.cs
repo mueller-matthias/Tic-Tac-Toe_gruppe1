@@ -21,7 +21,7 @@ namespace TicTacToeApp
             return _instance;
         }
 
-        // Funktion zum Speichern eines Zuges in der Datei
+        // Funktion zum Protokollieren eines Zuges in der Datei
         internal void Protokollieren(Zug zug)
         {
             try
@@ -43,11 +43,11 @@ namespace TicTacToeApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fehler beim Speichern des Zugs: {ex.Message}");
+                Console.WriteLine($"Fehler beim Protokollieren des Zugs: {ex.Message}");
             }
         }
 
-        // Funktion zum Speichern des Spielstarts
+        // Funktion zum Protokollieren des Spielstarts
         internal void ProtokolliereSpielStart(int size)
         {
             try
@@ -67,7 +67,7 @@ namespace TicTacToeApp
             }
         }
 
-        // Funktion zum Speichern des Spielendes und des Gewinners
+        // Funktion zum Protokollieren des Spielendes und des Gewinners
         internal void ProtokolliereSpielEnde(Spieler gewinner)
         {
             try
@@ -146,7 +146,7 @@ namespace TicTacToeApp
                 string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
                 string result = ConvertToChessNotation(zug.Col, zug.Row);
-                string protokollText = $"{zug.Spieler.Name} bestätigte nicht den Zug auf {result}. Erneute eingabe:\n";
+                string protokollText = $"{zug.Spieler.Name} bestätigte nicht den Zug auf {result}. Erneute Eingabe:\n";
 
                 File.AppendAllText(filePath, protokollText);
             }
