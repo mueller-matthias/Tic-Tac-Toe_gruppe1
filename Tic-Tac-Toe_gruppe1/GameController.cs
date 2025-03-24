@@ -7,6 +7,11 @@ using TicTacToeApp;
 
 namespace Tic_Tac_Toe_gruppe1
 {
+    /// <summary>
+    /// Die GameController-Klasse verwaltet das Spiel TicTacToe, einschließlich der Spiellogik,
+    /// der Spielerinteraktionen und der Spielfeldverwaltung. Sie steuert den Spielablauf,
+    /// überprüft die Eingaben der Spieler und führt das Spiel zu einem Ende (Gewinner oder Unentschieden).
+    /// </summary>
     public class GameController
     {
             private GameBoardModel spielfeld;
@@ -17,14 +22,20 @@ namespace Tic_Tac_Toe_gruppe1
             private SpielTimer timer;
             private int siegBedingung;
             private IGameStrategy gameStrategy;
-
-            public GameController()
+        /// <summary>
+        /// Konstruktor für die GameController-Klasse. Initialisiert das Spiel und wählt die
+        /// Spielfeldstrategie basierend auf der Eingabe des Benutzers.
+        /// </summary>
+        public GameController()
             {
-                protokoll = TicTacToeApp.Protokoll.GetInstance(); // Hole die Singleton-Instanz
+                protokoll = TicTacToeApp.Protokoll.GetInstance(); 
                 InitialisiereSpiel();
             }
 
-            private void InitialisiereSpiel()
+        /// <summary>
+        /// Initialisiert das Spiel, wählt das Spielfeld und setzt alle nötigen Parameter.
+        /// </summary>
+        private void InitialisiereSpiel()
             {
                 int size;
                 while (true)
@@ -33,30 +44,32 @@ namespace Tic_Tac_Toe_gruppe1
                     string input = Console.ReadLine();
                     if (input == "3")
                     {
-                        gameStrategy = new ThreeByThreeStrategy(); // Strategy für 3x3 Spielfeld
+                        gameStrategy = new ThreeByThreeStrategy(); 
                         break;
                     }
                     else if (input == "5")
                     {
-                        gameStrategy = new FiveByFiveStrategy(); // Strategy für 5x5 Spielfeld
+                        gameStrategy = new FiveByFiveStrategy(); 
                         break;
                     }
                     else if (input == "7")
                     {
-                        gameStrategy = new SevenBySevenStrategy(); // Strategy für 7x7 Spielfeld
+                        gameStrategy = new SevenBySevenStrategy(); 
                         break;
                     }
                     Console.WriteLine("Ungültige Eingabe! Bitte geben Sie 3, 5 oder 7 ein.");
                 }
 
-                spielfeld = new GameBoardModel(gameStrategy.GetBoardSize()); // Spielfeldgröße aus der gewählten Strategie
+                spielfeld = new GameBoardModel(gameStrategy.GetBoardSize()); 
                 spieler = new Spieler[] { new Spieler("Spieler 1", 'X'), new Spieler("Spieler 2", 'O') };
                 aktuellerSpielerIndex = 0;
                 timer = new SpielTimer();
                 siegBedingung = (spielfeld.Groesse == 3) ? 3 : 4;
             }
-
-            public void Starten()
+        /// <summary>
+        /// Startet das Spiel und lässt die Spieler abwechselnd Züge machen.
+        /// </summary>
+        public void Starten()
             {
                 protokoll.ProtokolliereSpielStart(spielfeld.Groesse);
                 timer.Starten();
@@ -74,7 +87,7 @@ namespace Tic_Tac_Toe_gruppe1
                     while (true)
                     {
                         Console.WriteLine("Geben Sie eine Position (z.B. a1, b2, ...) ein.");
-                        eingabe = Console.ReadLine().ToLower(); // Eingabe wird auf Kleinbuchstaben konvertiert
+                        eingabe = Console.ReadLine().ToLower(); 
 
                         if (spielfeld.ValidateInput(eingabe, out row, out col))
                         {
@@ -107,15 +120,15 @@ namespace Tic_Tac_Toe_gruppe1
                     }
                     else if (task.Result == "n")
                     {
-                        // Zug rückgängig machen und neuen Zug eingeben lassen
+                        
                         spielfeld.SetCell(row, col, '.');
-                        aktuellerSpieler.Undo.LadeLetztenZug(); // Entfernt den letzten gespeicherten Zug
+                        aktuellerSpieler.Undo.LadeLetztenZug(); 
                         Console.WriteLine("Zug wurde rückgängig gemacht. Versuchen Sie es erneut.");
                         protokoll.ProtokolliereNichtBestaetigung(new Zug(aktuellerSpieler, row, col));
-                        continue; // Wiederhole den Zug
+                        continue; 
                     }
                     protokoll.ProtokolliereBestaetigung(new Zug(aktuellerSpieler, row, col));
-                // Überprüfen, ob es einen Gewinner gibt
+                
                 if (spielfeld.PruefeGewinner(aktuellerSpieler.Symbol, siegBedingung))
                     {
                         view.UpdateView(spielfeld);
@@ -142,42 +155,28 @@ namespace Tic_Tac_Toe_gruppe1
 
                 FrageNachNeustart();
             }
-
-            private void UndoLetzterZug()
-            {
-                Spieler aktuellerSpieler = spieler[aktuellerSpielerIndex];
-                Zug letzterZug = aktuellerSpieler.Undo.LadeLetztenZug();
-
-                if (letzterZug != null)
-                {
-                    // Rückgängig gemachten Zug protokollieren
-                    protokoll.ProtokolliereUngueltigeEingabe(letzterZug);  // Oder eine Methode, die das Zurücksetzen protokolliert
-                    spielfeld.SetCell(letzterZug.Row, letzterZug.Col, '.');
-                    Console.WriteLine("Letzter Zug wurde rückgängig gemacht.");
-                }
-                else
-                {
-                    Console.WriteLine("Kein Zug zum Rückgängig machen verfügbar.");
-                }
-            }
-
-
-            private bool IstUnentschieden()
+        /// <summary>
+        ///  Überprüft, ob das Spiel unentschieden endet.
+        /// </summary>
+        /// <returns>True, wenn alle Felder belegt sind und es keinen Gewinner gibt, sonst False.</returns>
+        private bool IstUnentschieden()
             {
                 for (int row = 0; row < spielfeld.Groesse; row++)
                 {
                     for (int col = 0; col < spielfeld.Groesse; col++)
                     {
-                        if (spielfeld.GetCell(row, col) == '.') // Wenn es ein leeres Feld gibt
+                        if (spielfeld.GetCell(row, col) == '.') 
                         {
-                            return false; // Es gibt noch ein leeres Feld, also kein Unentschieden
+                            return false; 
                         }
                     }
                 }
-                return true; // Alle Felder sind belegt, also Unentschieden
+                return true; 
             }
-
-            private void FrageNachNeustart()
+        /// <summary>
+        /// Fragt den Benutzer, ob er eine neue Runde starten möchte.
+        /// </summary>
+        private void FrageNachNeustart()
             {
                 Console.WriteLine("Möchten Sie eine neue Runde starten? (ja/nein)");
                 string antwort = Console.ReadLine().ToLower();

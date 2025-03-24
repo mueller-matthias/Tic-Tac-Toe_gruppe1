@@ -41,20 +41,16 @@ namespace TicTacToeApp
         {
             try
             {
-                // Bestimmen des Pfads zum "Documents"-Ordner des Benutzers
+                
                 string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-                // Erstellen des vollständigen Dateipfads
+                
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
                 string result = ConvertToChessNotation(zug.Col, zug.Row);
 
-
-                // Erstellen des Protokolltexts für den Zug
                 string protokollText = $"{zug.Spieler.Name} setzte auf {result} um {zug.Zeitstempel}\n";
 
-                // Den Text an die Datei anhängen
                 File.AppendAllText(filePath, protokollText);
-
             }
             catch (Exception ex)
             {
@@ -73,7 +69,7 @@ namespace TicTacToeApp
                 string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
 
-                // Protokolltext für den Spielstart
+                
                 string protokollText = $"Spiel gestartet mit Spielfeldgröße {size}x{size}\n";
 
                 File.AppendAllText(filePath, protokollText);
@@ -96,7 +92,7 @@ namespace TicTacToeApp
                 string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
 
-                // Protokolltext für das Spielende
+                
                 string protokollText = gewinner == null ? "Spiel endete mit Unentschieden.\n" : $"{gewinner.Name} hat gewonnen!\n";
 
                 File.AppendAllText(filePath, protokollText);

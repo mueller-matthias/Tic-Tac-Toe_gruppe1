@@ -31,9 +31,9 @@ namespace Tic_Tac_Toe_gruppe1
 
             for (int i = 0; i < size; i++)
                 for (int j = 0; j < size; j++)
-                    board[i, j] = '.'; // Initialisierung mit Platzhaltern
+                    board[i, j] = '.'; 
 
-            siegBedingung = (size == 3) ? 3 : 4; // 3 gleiche für 3x3, 4 gleiche für 5x5 und 7x7
+            siegBedingung = (size == 3) ? 3 : 4;
         }
         /// <summary>
         /// Gibt den Inhalt einer bestimmten Zelle im Spielfeld zurück.
@@ -78,8 +78,8 @@ namespace Tic_Tac_Toe_gruppe1
             }
 
             
-            return CheckLine(0, 0, 1, 1, symbol, siegBedingung) || // Hauptdiagonale
-                   CheckLine(0, Groesse - 1, 1, -1, symbol, siegBedingung); // Nebendiagonale
+            return CheckLine(0, 0, 1, 1, symbol, siegBedingung) || 
+                   CheckLine(0, Groesse - 1, 1, -1, symbol, siegBedingung); 
         }
         /// <summary>
         /// Überprüft eine bestimmte Reihe (Zeile, Spalte oder Diagonale) auf eine Siegbedingung.
@@ -115,7 +115,7 @@ namespace Tic_Tac_Toe_gruppe1
             return false;
         }
 
-        ^/// <summary>
+        /// <summary>
         /// Zeigt das aktuelle Spielfeld auf der Konsole an.
         /// </summary>
         public void DisplayBoard()

@@ -40,7 +40,7 @@ namespace TicTacToeApp
         /// <returns></returns>
         public string Erhalten()
         {
-            return stopwatch.Elapsed.ToString(@"mm\:ss");  // Gibt die Zeit im Format Minuten:Sekunden zurück
+            return stopwatch.Elapsed.ToString(@"mm\:ss");  
         }
 
         /// <summary>
