@@ -78,7 +78,7 @@
 - Es wird überprüft, ob eine Zelle auf dem Spielfeld korrekt ausgelesen wird.  
 
 **Wie wird getestet?**  
-- Ein `GameBoardModel`-Objekt mit einer Größe von 3x3 wird erstellt.  
+- Ein `GameBoardModel`-Objekt mit einer Grösse von 3x3 wird erstellt.  
 - Der Wert einer bestimmten Zelle wird abgefragt.  
 - Es wird geprüft, ob die Zelle den erwarteten Standardwert `'.'` enthält.  
 
@@ -94,7 +94,7 @@
 **Wie wird getestet?**  
 - Ein `GameBoardModel`-Objekt wird erstellt.  
 - Eine bestimmte Zelle wird auf `'X'` gesetzt.  
-- Anschließend wird geprüft, ob die Zelle den gesetzten Wert enthält.  
+- Anschliessend wird geprüft, ob die Zelle den gesetzten Wert enthält.  
 
 **Warum wird getestet?**  
 - Stellt sicher, dass das Setzen eines Werts in einer Zelle korrekt funktioniert.  
