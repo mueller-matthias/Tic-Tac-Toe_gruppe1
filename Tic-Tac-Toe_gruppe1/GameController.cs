@@ -32,6 +32,46 @@ namespace Tic_Tac_Toe_gruppe1
                 InitialisiereSpiel();
             }
 
+        public IGameStrategy IGameStrategy
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Spieler Spieler
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public GameBoardModel GameBoardModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Protokoll Protokoll
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public SpielTimer SpielTimer
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Initialisiert das Spiel, wählt das Spielfeld und setzt alle nötigen Parameter.
         /// </summary>

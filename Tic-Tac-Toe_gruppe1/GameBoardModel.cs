@@ -183,7 +183,6 @@ namespace Tic_Tac_Toe_gruppe1
 
             return true;
         }
-
     }
 
 }

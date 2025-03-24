@@ -2,6 +2,22 @@
 {
     internal class Program
     {
+        public GameController GameController
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        internal GameView GameView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         static void Main(string[] args)
         {
             GameController spiel = new GameController();
