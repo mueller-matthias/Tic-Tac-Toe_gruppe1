@@ -31,9 +31,11 @@ namespace TicTacToeApp
 
                 // Erstellen des vollständigen Dateipfads
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+                string result = ConvertToChessNotation(zug.Col, zug.Row);
+
 
                 // Erstellen des Protokolltexts für den Zug
-                string protokollText = $"{zug.Spieler.Name} setzte auf ({zug.Row}, {zug.Col}) um {zug.Zeitstempel}\n";
+                string protokollText = $"{zug.Spieler.Name} setzte auf {result} um {zug.Zeitstempel}\n";
 
                 // Den Text an die Datei anhängen
                 File.AppendAllText(filePath, protokollText);
@@ -119,5 +121,18 @@ namespace TicTacToeApp
                 Console.WriteLine($"Fehler beim Protokollieren der ungültigen Eingabe: {ex.Message}");
             }
         }
+
+        static string ConvertToChessNotation(int col, int row)
+        {
+            // Umwandlung der Spalte (col) in einen Buchstaben (a-h)
+            char column = (char)('a' + col);
+
+            // Umwandlung der Reihe (row) in die Schachreihe (1-8)
+            int chessRow = row + 1;
+
+            return $"{column}{chessRow}";
+        }
+
     }
-}
+
+    }
