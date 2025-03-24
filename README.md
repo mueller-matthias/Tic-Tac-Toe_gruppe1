@@ -1,5 +1,5 @@
 # Tic-Tac-Toe Projekt der Gruppe 1
---
+
 ## Dieses TicTacToe-Spiel wurde von *Stefan Paulus* und *Matthias Müller* im Rahmen des Modul V320 erstellt.
 
 ## Funktionen:
