@@ -22,7 +22,7 @@ namespace TicTacToeApp
         }
 
         // Funktion zum Speichern eines Zuges in der Datei
-        internal void Speichern(Zug zug)
+        internal void Protokollieren(Zug zug)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace TicTacToeApp
         }
 
         // Funktion zum Speichern des Spielstarts
-        internal void SpielStarten(int size)
+        internal void ProtokolliereSpielStart(int size)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace TicTacToeApp
         }
 
         // Funktion zum Speichern des Spielendes und des Gewinners
-        internal void SpielBeenden(Spieler gewinner)
+        internal void ProtokolliereSpielEnde(Spieler gewinner)
         {
             try
             {
@@ -105,14 +105,48 @@ namespace TicTacToeApp
             }
         }
 
-        internal void UngueltigeEingabe(Zug zug)
+        internal void ProtokolliereUngueltigeEingabe(Zug zug)
         {
             try
             {
                 string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+                string result = ConvertToChessNotation(zug.Col, zug.Row);
+                string protokollText = $"{zug.Spieler.Name} versuchte eine ungültige Eingabe auf {result} um {zug.Zeitstempel}!\n";
 
-                string protokollText = $"{zug.Spieler.Name} versuchte eine ungültige Eingabe auf ({zug.Row}, {zug.Col}) um {zug.Zeitstempel}!\n";
+                File.AppendAllText(filePath, protokollText);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Protokollieren der ungültigen Eingabe: {ex.Message}");
+            }
+        }
+
+        internal void ProtokolliereBestaetigung(Zug zug)
+        {
+            try
+            {
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+                string result = ConvertToChessNotation(zug.Col, zug.Row);
+                string protokollText = $"{zug.Spieler.Name} bestätigte den Zug auf {result}\n";
+
+                File.AppendAllText(filePath, protokollText);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Protokollieren der ungültigen Eingabe: {ex.Message}");
+            }
+        }
+
+        internal void ProtokolliereNichtBestaetigung(Zug zug)
+        {
+            try
+            {
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string filePath = Path.Combine(userDocumentsPath, "TicTacToe_Protokoll.txt");
+                string result = ConvertToChessNotation(zug.Col, zug.Row);
+                string protokollText = $"{zug.Spieler.Name} bestätigte nicht den Zug auf {result}. Erneute eingabe:\n";
 
                 File.AppendAllText(filePath, protokollText);
             }
