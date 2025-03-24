@@ -109,13 +109,15 @@ namespace Tic_Tac_Toe_gruppe1
                 aktuellerSpieler.Undo.SpeichereZug(new Zug(aktuellerSpieler, row, col));
                 protokoll.Speichern(new Zug(aktuellerSpieler, row, col));
 
-                // Bestätigen, ob der Zug richtig war
                 Console.WriteLine($"Zug {aktuellerSpieler.Symbol} auf ({(char)('a' + col)}{row + 1}) gemacht.");
-                Console.WriteLine("Bestätigen? (y/n)");
+                Console.WriteLine("Bestätigen? (y/n) (automatisch bestätigt nach 10 Sekunden)");
 
-                string bestatigung = Console.ReadLine().ToLower();
-
-                if (bestatigung == "n")
+                var task = Task.Run(() => Console.ReadLine()?.ToLower());
+                if (!task.Wait(TimeSpan.FromSeconds(10)))
+                {
+                    Console.WriteLine("Zeit abgelaufen! Zug wurde automatisch bestätigt.");
+                }
+                else if (task.Result == "n")
                 {
                     // Zug rückgängig machen und neuen Zug eingeben lassen
                     spielfeld.SetCell(row, col, '.');
@@ -145,7 +147,6 @@ namespace Tic_Tac_Toe_gruppe1
                 }
                 else
                 {
-                    // Wenn kein Gewinner und kein Unentschieden, wird der nächste Spieler dran
                     aktuellerSpielerIndex = 1 - aktuellerSpielerIndex;
                 }
             }
