@@ -28,6 +28,15 @@ namespace Tic_Tac_Toe_gruppe1
         /// Der Zeitstempel, der den Zeitpunkt angibt, an dem der Zug gemacht wurde.
         /// </summary>
         public DateTime Zeitstempel { get; }
+
+        public UndoFunction UndoFunction
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Initialisiert einen neuen Zug mit dem angegebenen Spieler und der Position des Zugs.
         /// Der Zeitstempel wird automatisch auf den aktuellen Zeitpunkt gesetzt.

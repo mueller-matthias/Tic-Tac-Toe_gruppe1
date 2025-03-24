@@ -11,6 +11,14 @@ namespace Tic_Tac_Toe_gruppe1
     /// </summary>
     internal class GameView
     {
+        public Spieler Spieler
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Aktualisiert die Ansicht des Spielbretts und zeigt das aktuelle Spielbrett an.
         /// Diese Methode ruft die Methode <see cref="GameBoardModel.DisplayBoard"/> auf, um das

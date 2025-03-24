@@ -23,6 +23,15 @@ namespace Tic_Tac_Toe_gruppe1
         /// Die Undo-Funktion für den Spieler, um einen Zug rückgängig zu machen.
         /// </summary>
         public UndoFunction Undo { get; } = new UndoFunction();
+
+        public Zug Zug
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Initialisiert einen neuen Spieler mit einem Namen und einem Symbol.
         /// Der Konstruktor erstellt einen Spieler mit dem angegebenen Namen und Symbol.

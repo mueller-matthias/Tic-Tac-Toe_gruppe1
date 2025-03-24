@@ -1,2 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Diese drei Klassen erben von IGameStategy">
+    <Position X="2.879" Y="10.178" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="Tic_Tac_Toe_gruppe1.Zug">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAQAAAAAAAAAAIAAAAAAAAAAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Zug.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UndoFunction" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.UndoFunction">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAIAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>UndoFunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicTacToeApp.SpielTimer">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAIAACAAAAAAAAIAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.ThreeByThreeStrategy">
+    <Position X="1.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ThreeByThreeStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.Spieler">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAACgA=</HashCode>
+      <FileName>Spieler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Zug" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.SevenBySevenStrategy">
+    <Position X="4.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SevenBySevenStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TicTacToeApp.Protokoll">
+    <Position X="14.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAEBAAAAAAQgAAAAAYAAQBAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Protokoll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.Program">
+    <Position X="16" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAABAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GameController" />
+      <Property Name="GameView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.GameView">
+    <Position X="9" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Spieler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.GameController">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Protokoll" Type="TicTacToeApp.Protokoll" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="0.594" />
+        <Point X="15.75" Y="0.594" />
+        <Point X="15.75" Y="2.625" />
+        <Point X="16.125" Y="2.625" />
+        <Point X="16.125" Y="3.625" />
+        <Point X="15.75" Y="3.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAACAgAAAAAAAABAAAAKQQ4AAQAAAAAAEEg=</HashCode>
+      <FileName>GameController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IGameStrategy" />
+      <Property Name="Spieler" />
+      <Property Name="GameBoardModel" />
+      <Property Name="Protokoll" />
+      <Property Name="SpielTimer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.GameBoardModel">
+    <Position X="2" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAAABAAiQQAAAAAAAAAAAIAKAAAAAAAAAA=</HashCode>
+      <FileName>GameBoardModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tic_Tac_Toe_gruppe1.FiveByFiveStrategy">
+    <Position X="3" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FiveByFiveStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Tic_Tac_Toe_gruppe1.IGameStrategy">
+    <Position X="3" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IGameStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
