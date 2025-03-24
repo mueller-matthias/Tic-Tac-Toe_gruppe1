@@ -8,7 +8,11 @@ namespace Tic_Tac_Toe_gruppe1
 {
         public class ThreeByThreeStrategy : IGameStrategy
         {
-            public int GetBoardSize()
+        /// <summary>
+        /// Für das Strategy-Pattern. So kann die Spielfeldgrösse definieren.
+        /// </summary>
+        /// <returns>Grösse des Spielfeldes</returns>
+        public int GetBoardSize()
             {
                 return 3;
             }
