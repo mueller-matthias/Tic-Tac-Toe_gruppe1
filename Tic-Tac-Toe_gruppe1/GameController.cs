@@ -7,7 +7,7 @@ using TicTacToeApp;
 
 namespace Tic_Tac_Toe_gruppe1
 {
-    internal class GameController
+    public class GameController
     {
             private GameBoardModel spielfeld;
             private Spieler[] spieler;
