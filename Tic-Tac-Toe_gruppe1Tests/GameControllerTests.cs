@@ -19,7 +19,6 @@ namespace Tic_Tac_Toe_gruppe1.Tests
         [TestInitialize]
         public void Setup()
         {
-            // Redirect console input and output for testing
             consoleOutput = new StringWriter();
             Console.SetOut(consoleOutput);
         }
@@ -27,7 +26,6 @@ namespace Tic_Tac_Toe_gruppe1.Tests
         [TestCleanup]
         public void Cleanup()
         {
-            // Restore console input and output
             Console.SetOut(Console.Out);
             consoleOutput.Dispose();
         }
@@ -44,7 +42,6 @@ namespace Tic_Tac_Toe_gruppe1.Tests
 
             // Assert
             Assert.IsNotNull(gameController, "GameController should be initialized");
-            // You would need to use reflection or add a method to expose private fields for more detailed assertions
         }
 
         [TestMethod]
@@ -83,7 +80,6 @@ namespace Tic_Tac_Toe_gruppe1.Tests
             Console.SetIn(consoleInput);
             gameController = new GameController();
 
-            // Use reflection to access the private method
             var method = typeof(GameController).GetMethod("IstUnentschieden",
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
@@ -98,12 +94,10 @@ namespace Tic_Tac_Toe_gruppe1.Tests
         public void InitialiseSpiel_InvalidBoardSize_ShouldRepromptUntilValidInput()
         {
             // Arrange
-            // Simulate multiple invalid inputs before a valid one
             using (StringReader input = new StringReader("4\n0\n6\n3\n"))
             {
                 Console.SetIn(input);
 
-                // Capture console output to verify prompts
                 using (StringWriter output = new StringWriter())
                 {
                     Console.SetOut(output);
@@ -114,11 +108,9 @@ namespace Tic_Tac_Toe_gruppe1.Tests
                     // Assert
                     string consoleOutput = output.ToString();
 
-                    // Check that invalid input messages were displayed
                     Assert.IsTrue(consoleOutput.Contains("Ungültige Eingabe! Bitte geben Sie 3, 5 oder 7 ein."),
                         "Should prompt for valid input multiple times");
 
-                    // Verify that eventually a valid input was accepted
                     Assert.IsTrue(consoleOutput.Contains("Wählen Sie die Spielfeldgröße: 3x3, 5x5 oder 7x7:"),
                         "Should allow selection of board size");
                 }

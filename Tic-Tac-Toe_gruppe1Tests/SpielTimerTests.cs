@@ -29,7 +29,7 @@ namespace TicTacToeApp.Tests
 
             // Act
             timer.Starten();
-            Thread.Sleep(1000); // Wait for 1 second
+            Thread.Sleep(1000); 
             timer.Stoppen();
 
             // Assert
@@ -45,11 +45,11 @@ namespace TicTacToeApp.Tests
 
             // Act
             timer.Starten();
-            Thread.Sleep(1000); // Wait for 1 second
+            Thread.Sleep(1000); 
             timer.Stoppen();
             string firstTime = timer.Erhalten();
 
-            Thread.Sleep(1000); // Wait another second
+            Thread.Sleep(1000); 
             string secondTime = timer.Erhalten();
 
             // Assert
@@ -64,7 +64,7 @@ namespace TicTacToeApp.Tests
 
             // Act
             timer.Starten();
-            Thread.Sleep(1500); // Wait for 1.5 seconds
+            Thread.Sleep(1500); 
             timer.Stoppen();
             string elapsedTime = timer.Erhalten();
 
@@ -80,13 +80,13 @@ namespace TicTacToeApp.Tests
 
             // Act
             timer.Starten();
-            Thread.Sleep(1000); // Wait for 1 second
+            Thread.Sleep(1000); 
             timer.Stoppen();
             string firstTime = timer.Erhalten();
 
             timer.Zuruecksetzen();
             timer.Starten();
-            Thread.Sleep(500); // Wait for 0.5 seconds
+            Thread.Sleep(500); 
             timer.Stoppen();
             string secondTime = timer.Erhalten();
 
@@ -102,11 +102,11 @@ namespace TicTacToeApp.Tests
 
             // Act
             timer.Starten();
-            Thread.Sleep(500); // Wait for 0.5 seconds
+            Thread.Sleep(500);
             timer.Stoppen();
 
             timer.Starten();
-            Thread.Sleep(500); // Wait for another 0.5 seconds
+            Thread.Sleep(500);
             timer.Stoppen();
 
             // Assert
