@@ -100,23 +100,41 @@ namespace Tic_Tac_Toe_gruppe1
             row = -1;
             col = -1;
 
-            if (input.Length < 2) return false;
+            // Prüfe, ob die Eingabe leer ist oder zu kurz
+            if (string.IsNullOrWhiteSpace(input) || input.Length < 2)
+            {
+                return false;
+            }
 
-            // Zeile und Spalte extrahieren
-            char columnChar = Char.ToLower(input[0]);
-            if (columnChar < 'a' || columnChar > 'z') return false; // ungültiger Buchstabe
+            // Prüfe, ob der erste Buchstabe ein gültiger Spaltenindex ist
+            char columnChar = char.ToLower(input[0]);
+            col = columnChar - 'a';  // 'a' entspricht 0, 'b' entspricht 1, usw.
+            if (col < 0 || col >= Groesse)
+            {
+                return false;
+            }
 
-            // Umwandlung der Buchstaben in die Spaltennummer (z.B. 'a' -> 0, 'b' -> 1, ...)
-            col = columnChar - 'a';
-            if (col >= Groesse) return false; // Spalte außerhalb der Spielfeldgröße
+            // Extrahiere den Rest der Eingabe, der die Zeilennummer sein sollte
+            string rowString = input.Substring(1);
 
-            if (!int.TryParse(input.Substring(1), out row)) return false;
+            // Versuche, den Rest in eine Zahl umzuwandeln
+            if (!int.TryParse(rowString, out row))
+            {
+                return false;
+            }
 
-            row--; // Umwandlung in 0-basierten Index
-            if (row < 0 || row >= Groesse) return false; // Zeile außerhalb der Spielfeldgröße
+            // Prüfe, ob die Zeile im gültigen Bereich liegt (1-basiert)
+            if (row < 1 || row > Groesse)
+            {
+                return false;
+            }
+
+            // Konvertiere von 1-basiertem zu 0-basiertem Index
+            row--;
 
             return true;
         }
+
     }
 
 }
