@@ -31,7 +31,7 @@ namespace Tic_Tac_Toe_gruppe1
 
             for (int i = 0; i < size; i++)
                 for (int j = 0; j < size; j++)
-                    board[i, j] = '.'; 
+                    board[i, j] = '.';
 
             siegBedingung = (size == 3) ? 3 : 4;
         }
@@ -67,19 +67,19 @@ namespace Tic_Tac_Toe_gruppe1
         /// <returns>true, wenn der Spieler gewonnen hat, andernfalls false</returns>
         public bool PruefeGewinner(char symbol, int siegBedingung)
         {
-            
+
             for (int i = 0; i < Groesse; i++)
             {
-                if (CheckLine(i, 0, 0, 1, symbol, siegBedingung) || 
-                    CheckLine(0, i, 1, 0, symbol, siegBedingung))   
+                if (CheckLine(i, 0, 0, 1, symbol, siegBedingung) ||
+                    CheckLine(0, i, 1, 0, symbol, siegBedingung))
                 {
                     return true;
                 }
             }
 
-            
-            return CheckLine(0, 0, 1, 1, symbol, siegBedingung) || 
-                   CheckLine(0, Groesse - 1, 1, -1, symbol, siegBedingung); 
+
+            return CheckLine(0, 0, 1, 1, symbol, siegBedingung) ||
+                   CheckLine(0, Groesse - 1, 1, -1, symbol, siegBedingung);
         }
         /// <summary>
         /// Überprüft eine bestimmte Reihe (Zeile, Spalte oder Diagonale) auf eine Siegbedingung.
@@ -101,11 +101,11 @@ namespace Tic_Tac_Toe_gruppe1
                 if (board[x, y] == symbol)
                 {
                     count++;
-                    if (count == siegBedingung) return true; 
+                    if (count == siegBedingung) return true;
                 }
                 else
                 {
-                    count = 0; 
+                    count = 0;
                 }
 
                 x += stepX;
@@ -120,21 +120,21 @@ namespace Tic_Tac_Toe_gruppe1
         /// </summary>
         public void DisplayBoard()
         {
-            
+
             Console.Write("    ");
             for (int i = 0; i < Groesse; i++)
             {
-                Console.Write((char)('a' + i) + " "); 
+                Console.Write((char)('a' + i) + " ");
             }
             Console.WriteLine();
 
-            
+
             for (int i = 0; i < Groesse; i++)
             {
-                Console.Write((i + 1) + "   "); 
+                Console.Write((i + 1) + "   ");
                 for (int j = 0; j < Groesse; j++)
                 {
-                    Console.Write(board[i, j] + " "); 
+                    Console.Write(board[i, j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -155,35 +155,35 @@ namespace Tic_Tac_Toe_gruppe1
             {
                 return false;
             }
-           
+
             char columnChar = char.ToLower(input[0]);
-            col = columnChar - 'a'; 
+            col = columnChar - 'a';
             if (col < 0 || col >= Groesse)
             {
                 return false;
             }
 
-            
+
             string rowString = input.Substring(1);
 
-            
+
             if (!int.TryParse(rowString, out row))
             {
                 return false;
             }
 
-            
+
             if (row < 1 || row > Groesse)
             {
                 return false;
             }
 
-            
+
             row--;
 
             return true;
         }
     }
 
-
+}
 
