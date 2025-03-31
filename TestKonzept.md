@@ -4,181 +4,115 @@
 
 ### **1. Constructor_SetsPropertiesCorrectly** 
 
-**Was wird getestet?**  
-- Es wird getestet, ob die Eigenschaften `Spieler`, `Row` und `Col` korrekt gesetzt werden, wenn ein `Zug`-Objekt erstellt wird.  
+**Was wird getestet?**: Es wird getestet, ob die Eigenschaften Spieler, Row und Col korrekt gesetzt werden, wenn ein Zug-Objekt erstellt wird.  
 
-**Wie wird getestet?**  
-- Eine Instanz von `Spieler` wird erstellt.  
-- Ein `Zug`-Objekt wird mit diesem Spieler und den Werten für `Row` und `Col` initialisiert.  
-- Es wird überprüft, ob die Eigenschaften des `Zug`-Objekts mit den übergebenen Werten übereinstimmen.  
+**Wie wird getestet?**: zuerst wird eine Instanz von Spieler erstellt. danach wird Ein Zug mit den Werten für Row und Col initialisiert. zum schluss wird überprüft, ob die Eigenschaften des Zuges mit den übergebenen Werten übereinstimmen.  
 
-**Warum wird getestet?**  
-- Test stellt sicher, dass ein `Zug`-Objekt korrekt initialisiert wird und die übergebenen Werte korrekt gespeichert werden.  
+**Warum wird getestet?**: Der Test stellt sicher das ein Zug-Objekt richtig initialisiert wird und die werte korrekt gespeichert wurden  
 
 ### **2. Constructor_SetsZeitstempelToCurrentTime**  
 
-**Was wird getestet?**  
-- Es wird getestet, ob das `Zug`-Objekt beim Erstellen einen Zeitstempel setzt, der in den aktuellen Zeitrahmen fällt.  
+**Was wird getestet?**: Es wird getestet, ob das Zug Objekt einen zeitstempel setzt der in den richtigen Zeitrahmen fällt. 
 
-**Wie wird getestet?**  
-- Der aktuelle Zeitpunkt wird vor der Erstellung des `Zug`-Objekts gespeichert.  
-- Ein `Zug`-Objekt wird erstellt.  
-- Der aktuelle Zeitpunkt wird erneut gespeichert.  
-- Es wird geprüft, ob der Zeitstempel des `Zug`-Objekts zwischen den beiden gespeicherten Zeitpunkten liegt.  
+**Wie wird getestet?**: zuerst wird der aktuelle zeitpunkt gespeichert, dan der zeitpunkt bei der erstellung des zuges und bevor geprüft wird ob er zeitstempel des zuges zwischen den beiden gespeicherten zeitpunkten liegt, speichert man nochmal den aktuellen zeitpunkt.
 
-**Warum wird getestet?**  
-- Dieser Test stellt sicher, dass das `Zug`-Objekt den Zeitstempel korrekt setzt, um den Zeitpunkt des Zuges festzuhalten.  
+**Warum wird getestet?**: Der Test stellt sicher, dass der Zug den Zeitstempel korrekt setzt.
 
 ### **3. Constructor_AllowsZeroBasedIndices**  
 
-**Was wird getestet?**  
-- Es wird getestet, ob ein `Zug`-Objekt mit `Row` und `Col` als `0` erstellt werden kann.  
+**Was wird getestet?**: Es soll getestet werden ob ein Zug mit Row und Col als `0` erstellt werden kann.  
 
-**Wie wird getestet?**  
-- Eine Instanz von `Spieler` wird erstellt.  
-- Ein `Zug`-Objekt wird mit `Row = 0` und `Col = 0` erstellt.  
-- Es wird überprüft, ob die gespeicherten Werte im `Zug`-Objekt korrekt sind.  
+**Wie wird getestet?**: zuerst wird eine instanz von spieler erstellt und danach ein zug mit row und col = `0` erstellt. Zum schluss wird überprüft ob die gespeicherten Werte im zug richtig sind.
 
-**Warum wird getestet?**  
-- Dieser Test stellt sicher, dass das `Zug`-Objekt nullbasierte Indizes unterstützt, die in vielen Spiellogiken verwendet werden.  
+**Warum wird getestet?**: Der Test soll prüfen das er Zug nullbasierte eingaben unterstützt.
 
 ### **4. Constructor_AllowsNegativeIndices** 
 
-**Was wird getestet?**  
-- Es wird getestet, ob ein `Zug`-Objekt mit negativen Werten für `Row` und `Col` erstellt werden kann.  
+**Was wird getestet?**: Es wird getestet, ob ein Zug mit negativen Werten für Row und Col erstellt werden kann.  
 
-**Wie wird getestet?**  
-- Eine Instanz von `Spieler` wird erstellt.  
-- Ein `Zug`-Objekt wird mit `Row = -1` und `Col = -2` erstellt.  
-- Es wird überprüft, ob die gespeicherten Werte im `Zug`-Objekt korrekt sind.  
+**Wie wird getestet?**: zuerst wird wieder eine Instanz von Spieler erstellt. und ein Zug mit row und col mit einem negativen zahlenwert. danach prüft man ob die gespeicherten werte im Zug Korrekt sind 
 
-**Warum wird getestet?**  
-- Dieser Test stellt sicher, dass das `Zug`-Objekt negative Werte akzeptiert, falls diese später in bestimmten Spielszenarien relevant sein sollten.  
+**Warum wird getestet?**: Der test ist vorallem für später falls das spiel ml in einem szenario negative werte annehmen soll. 
 
 ### **5. Constructor_SetsPlayerSymbolCorrectly**  
 
-**Was wird getestet?**  
-- Es wird getestet, ob das Symbol des Spielers (`Symbol`) korrekt im `Zug`-Objekt gespeichert wird.  
+**Was wird getestet?**: Es wird getestet, ob das Symbol des Spielerskorrekt im Zug gespeichert wird.  
 
-**Wie wird getestet?**  
-- Eine Instanz von `Spieler` mit einem bestimmten Symbol (`'O'`) wird erstellt.  
-- Ein `Zug`-Objekt wird mit diesem Spieler erstellt.  
-- Es wird überprüft, ob das `Symbol`-Attribut des Spielers im `Zug`-Objekt korrekt gesetzt ist.  
+**Wie wird getestet?**: zuerst wird ein spieler erstellt mit dem symbol `'O'` und danach ein zug mit demselben symbol. überprüft wird ob das symbol des spielers im zug richtig ist.
 
-**Warum wird getestet?**  
-- Dieser Test stellt sicher, dass das `Zug`-Objekt das Symbol des Spielers korrekt speichert, um eine eindeutige Zuordnung der Züge zu ermöglichen.  
+**Warum wird getestet?**: Der Test stellt sicher, dass das `Zug`-Objekt das Symbol des Spielers korrekt speichert.
 ---
 
 ## GameBoardModel Klasse
 
-
 ### **1. GetCellTest**  
 
-**Was wird getestet?**  
-- Es wird überprüft, ob eine Zelle auf dem Spielfeld korrekt ausgelesen wird.  
+**Was wird getestet?**:  Es wird überprüft, ob eine Zelle auf dem Spielfeld korrekt ausgelesen wird.  
 
-**Wie wird getestet?**  
-- Ein `GameBoardModel`-Objekt mit einer Grösse von 3x3 wird erstellt.  
-- Der Wert einer bestimmten Zelle wird abgefragt.  
-- Es wird geprüft, ob die Zelle den erwarteten Standardwert `'.'` enthält.  
+**Wie wird getestet?**: zuerst erstellt man ein GameBardModel Objekt mit grösse 3x3 und der wert einer bestimmten zelle wird abgefragt, der wert muss dann `'.'` sein (standardwert).
 
-**Warum wird getestet?**  
-- Stellt sicher, dass das Spielfeld korrekt initialisiert wird und der Standardwert für leere Zellen richtig zurückgegeben wird.  
-
+**Warum wird getestet?**: der Test Stellt sicher, dass das Spielfeld korrekt erstellt wird und der Standardwert richtig zurückgegeben wird
 
 ### **2. SetCellTest**  
 
-**Was wird getestet?**  
-- Es wird überprüft, ob eine Zelle auf dem Spielfeld korrekt gesetzt wird.  
+**Was wird getestet?**: Es wird überprüft ob eine zelle richtig auf dem spielfeld gesetzt wird
 
-**Wie wird getestet?**  
-- Ein `GameBoardModel`-Objekt wird erstellt.  
-- Eine bestimmte Zelle wird auf `'X'` gesetzt.  
-- Anschliessend wird geprüft, ob die Zelle den gesetzten Wert enthält.  
+**Wie wird getestet?**: zuerst erstellt man ein `GameBoardModel`-Objekt mit dem wert `'X'` auf einer bestimmten zelle. Danach wird gepröfft ob die Zelle den gewollten wert hat.
 
-**Warum wird getestet?**  
-- Stellt sicher, dass das Setzen eines Werts in einer Zelle korrekt funktioniert.  
+**Warum wird getestet?**: schaut das das setzen eines Wertes Funktioniert.
 
 
 ### **3. ValidateMoveTest_ValidMove**  
 
-**Was wird getestet?**  
-- Es wird geprüft, ob ein gültiger Zug als solcher erkannt wird.  
+**Was wird getestet?**: Es wird geschaut ob ein gültiger Zug auch als gültig erkannt wird 
 
-**Wie wird getestet?**  
-- Ein leeres `GameBoardModel` wird erstellt.  
-- Es wird überprüft, ob ein Zug auf eine freie Zelle als gültig erkannt wird.  
+**Wie wird getestet?**: Zuerst wird ein leeres GameBoardModel wird erstellt. Dann wird überprüft ob ein gültiger zug auf einer freien Zelle als gültig erkannt wird.
 
-**Warum wird getestet?**  
-- Sicherstellung, dass Spieler nur erlaubte Züge machen können.  
+**Warum wird getestet?**: Man muss schauen ds Gültige züge richtig erkannt werden.
 
 
 ### **4. ValidateMoveTest_InvalidMove**  
 
-**Was wird getestet?**  
-- Es wird geprüft, ob ein ungültiger Zug korrekt erkannt wird.  
+**Was wird getestet?**: Es wird geschaut, ob ein ungültiger Zug korrekt erkannt wird.  
 
-**Wie wird getestet?**  
-- Eine Zelle wird mit `'X'` belegt.  
-- Es wird überprüft, ob das erneute Setzen an der gleichen Position als ungültig erkannt wird.  
+**Wie wird getestet?**: Eine Zelle kriegt den Wert `'X'`, und es wird geprüft das wenn man versucht einen neuen wert auf das feld zu setzen, der Zug als ungültig erklärt wird
 
-**Warum wird getestet?**  
-- Stellt sicher, dass ein Spieler keine bereits belegte Zelle überschreiben kann.  
+**Warum wird getestet?**: Schaut dass man nicht 2 züge auf ein Feld machen kann
 
 
 ### **5. PruefeGewinnerTest_WinningRow**  
 
-**Was wird getestet?**  
-- Es wird überprüft, ob eine Gewinnbedingung korrekt erkannt wird.  
+**Was wird getestet?**: es wird geprüfft ob die Gewinnbedinung richtig erkannt wird.
 
-**Wie wird getestet?**  
-- Eine komplette Zeile wird mit `'X'` gefüllt.  
-- Die Methode zur Gewinnerprüfung wird aufgerufen.  
-- Es wird geprüft, ob der Gewinn korrekt erkannt wird.  
+**Wie wird getestet?**: zuesrt wird eine komplette Zeile mit `'x'` gefüllt und es wird geprüft das die Methode erkennt das die Gewinnbedingung erfüllt ist
 
-**Warum wird getestet?**  
-- Stellt sicher, dass das Spiel korrekt erkennt, wenn ein Spieler gewinnt.  
+**Warum wird getestet?**: Es wird geschaut das man sieht ob die gewinnbedingung funktioniert.
 
 
 ### **6. PruefeGewinnerTest_NoWin**  
 
-**Was wird getestet?**  
-- Es wird geprüft, ob das Spiel korrekt erkennt, dass kein Spieler gewonnen hat.  
+**Was wird getestet?**: Es wird geprüft, ob das Spiel korrekt erkennt wenn es kein Gewinner gibt.
 
-**Wie wird getestet?**  
-- Eine zufällige Verteilung von Symbolen wird gesetzt.  
-- Die Methode zur Gewinnerprüfung wird aufgerufen.  
-- Es wird überprüft, dass kein Gewinner erkannt wird.  
+**Wie wird getestet?** Man verteilt die Symbole so das es kein Gewinner gibt un prüft ob die Methode das so erkennt. 
 
-**Warum wird getestet?**  
-- Stellt sicher, dass die Gewinnprüfung nicht fälschlicherweise einen Gewinner meldet.  
+**Warum wird getestet?**: schaut das es nicht einen gewinner gibt, wenn es keinen geben sollte.
 
 
 ### **7. ValidateInputTest_ValidInput**  
 
-**Was wird getestet?**  
-- Es wird geprüft, ob eine gültige Eingabe korrekt in Zeilen- und Spaltenwerte umgewandelt wird.  
+**Was wird getestet?**: ess wird geschaut das eine richtige eingabe in zeilen und spaltewerte geteilt wird
 
-**Wie wird getestet?**  
-- Eine Eingabe wie `"b2"` wird getestet.  
-- Die Methode gibt Zeile und Spalte zurück.  
-- Es wird geprüft, ob die Werte korrekt interpretiert wurden (`(1,1)`).  
+**Wie wird getestet?**: eine Eingabe wie z.b `"b2"` wird getestet, die Methode gibt zeile und spalte zurück und es wird geschaut das die werte korrekt überliefert wurden 
 
-**Warum wird getestet?**  
-- Stellt sicher, dass Benutzereingaben korrekt interpretiert werden.  
-
+**Warum wird getestet?**: Schaut das die Benutzereingaben richtig Interpretiert werden
 
 ### **8. ValidateInputTest_InvalidInput**  
 
-**Was wird getestet?**  
-- Es wird geprüft, ob eine ungültige Eingabe korrekt erkannt wird.  
+**Was wird getestet?**: Es wird geprüft, ob eine ungültige Eingabe korrekt erkannt wird.  
 
-**Wie wird getestet?**  
-- Eine ungültige Eingabe wie `"z9"` wird getestet.  
-- Es wird überprüft, ob die Methode dies als ungültig erkennt.  
+**Wie wird getestet?**: Eine ungültige Eingabe wie `"z9"` wird getestet, danach wird überprüft ob die Methode die auch wirklich als falsch erkennt
 
-**Warum wird getestet?**  
-- Stellt sicher, dass fehlerhafte Benutzereingaben korrekt abgefangen werden.  
+**Warum wird getestet?**:Schaut das Fehlerhafte Eingaben Abgefangen werden.
 
 ---
 
@@ -187,16 +121,11 @@
 
 ### **1. InitialiseSpiel_SelectThreeByThreeBoard_ShouldSetupCorrectly**  
 
-**Was wird getestet?**  
-- Überprüfung, ob der `GameController` korrekt initialisiert wird, wenn der Benutzer ein 3x3-Spielfeld auswählt.  
+**Was wird getestet?**: Überprüft ob der GameController korrekt initialisiert wird wenn man ein 3x3-Spielfeld auswählt.  
 
-**Wie wird getestet?**  
-- Es wird ein `StringReader` mit der Eingabe `"3\n"` erstellt und an `Console.SetIn` gebunden.  
-- Ein `GameController` wird initialisiert.  
-- Es wird geprüft, ob der `GameController` erfolgreich instanziiert wurde.  
+**Wie wird getestet?**: Es wird ein `StringReader` mit der Eingabe `"3\n"` erstellt und an `Console.SetIn` gebunden, danach wird ein `GameController` initialisiert und es wird geprüft ob das gelungen ist.
 
-**Warum wird getestet?**  
-- Stellt sicher, dass das Spielfeld korrekt initialisiert wird, wenn der Benutzer die Größe `3x3` auswählt.  
+**Warum wird getestet?**: Schaut ob das Spielfeld korrekt initialisiert wird wenn der Benutzer die Größe `3x3` auswählt.  
 
 
 ### **2. InitialiseSpiel_SelectFiveByFiveBoard_ShouldSetupCorrectly**  
@@ -204,182 +133,36 @@
 **Was wird getestet?**  
 - Überprüfung, ob der `GameController` korrekt initialisiert wird, wenn der Benutzer ein 5x5-Spielfeld auswählt.  
 
-**Wie wird getestet?**  
-- Es wird ein `StringReader` mit der Eingabe `"5\n"` erstellt und an `Console.SetIn` gebunden.  
-- Ein `GameController` wird initialisiert.  
-- Es wird geprüft, ob der `GameController` erfolgreich instanziiert wurde.  
+**Wie wird getestet?**: Es wird ein `StringReader` mit der Eingabe `"5\n"` erstellt und an `Console.SetIn` gebunden und ein `GameController` wird initialisiert. Danach mwird geprüft, ob der `GameController` erfolgreich instanziiert wurde. 
 
-**Warum wird getestet?**  
-- Stellt sicher, dass das Spielfeld korrekt initialisiert wird, wenn der Benutzer die Größe `5x5` auswählt.  
+**Warum wird getestet?**: Schaut, dass das Spielfeld korrekt initialisiert wird, wenn der Benutzer die Größe `5x5` auswählt.  
 
 
 ### **3. InitialiseSpiel_SelectSevenBySevenBoard_ShouldSetupCorrectly**  
 
-**Was wird getestet?**  
-- Überprüfung, ob der `GameController` korrekt initialisiert wird, wenn der Benutzer ein 7x7-Spielfeld auswählt.  
+**Was wird getestet?**: Überprüfung, ob der `GameController` korrekt initialisiert wird, wenn der Benutzer ein 7x7-Spielfeld auswählt.  
 
-**Wie wird getestet?**  
-- Es wird ein `StringReader` mit der Eingabe `"7\n"` erstellt und an `Console.SetIn` gebunden.  
-- Ein `GameController` wird initialisiert.  
-- Es wird geprüft, ob der `GameController` erfolgreich instanziiert wurde.  
+**Wie wird getestet?**: Es wird ein `StringReader` mit der Eingabe `"7\n"` erstellt und an `Console.SetIn` gebunden danach wird ein `GameController` initialisiert und es wird geprüft ob dieser instanziert wurde.
 
-**Warum wird getestet?**  
-- Stellt sicher, dass das Spielfeld korrekt initialisiert wird, wenn der Benutzer die Größe `7x7` auswählt.  
+**Warum wird getestet?**: Stellt sicher, dass das Spielfeld korrekt initialisiert wird, wenn der Benutzer die Größe `7x7` auswählt.  
 
 
 ### **4. IstUnentschieden_EmptyBoard_ShouldReturnFalse**  
 
-**Was wird getestet?**  
-- Überprüfung, ob die Methode `IstUnentschieden` korrekt `false` zurückgibt, wenn das Spielfeld leer ist.  
+**Was wird getestet?**: es wird überprüft, ob die Methode `IstUnentschieden` korrekt `false` zurückgibt, wenn das Spielfeld leer ist.  
 
-**Wie wird getestet?**  
-- Ein `GameController` mit einer 3x3-Spielfeldgröße wird initialisiert.  
-- Die private Methode `IstUnentschieden` wird mittels Reflection aufgerufen.  
-- Es wird überprüft, ob das Ergebnis `false` ist, da ein leeres Spielfeld kein Unentschieden darstellt.  
+**Wie wird getestet?**: Ein `GameController` mit wird initialisiert und die private Methode `IstUnentschieden` wird mittels Reflection aufgerufen. danach prüft es ob das Ergebnis `false` ist (leeres spielfeld kein unentschieden)
 
-**Warum wird getestet?**  
-- Sicherstellen, dass das Spiel korrekt erkennt, dass ein leeres Spielfeld nicht zu einem Unentschieden führt.  
+**Warum wird getestet?**: Sicherstellen, dass das Spiel korrekt erkennt das es kein unentschieden ist wen das feld nicht voll ist
 
 
 ### **5. InitialiseSpiel_InvalidBoardSize_ShouldRepromptUntilValidInput**  
 
-**Was wird getestet?**  
-- Überprüfung, ob der `GameController` den Benutzer bei ungültigen Eingaben dazu auffordert, eine gültige Spielfeldgröße auszuwählen.  
+**Was wird getestet?**: Überprüft das der `GameController` den Benutzer bei ungültigen Eingaben dazu auffordert, eine gültige Spielfeldgröße auszuwählen.  
 
-**Wie wird getestet?**  
-- Ein `StringReader` mit einer Reihe von ungültigen Eingaben (`"4\n0\n6\n3\n"`) wird erstellt und an `Console.SetIn` gebunden.  
-- Der `GameController` wird gestartet, und die Konsolenausgabe wird aufgezeichnet.  
-- Es wird überprüft, ob die ungültigen Eingaben korrekt abgefangen und dem Benutzer eine entsprechende Aufforderung zur Eingabe angezeigt wird.  
+**Wie wird getestet?**: Ein `StringReader` mit einer Reihe von ungültigen Eingaben (`"4\n0\n6\n3\n"`) wird erstellt und an `Console.SetIn` gebunden. Der `GameController` wird gestartet, und die Konsolenausgabe wird aufgezeichnet. Es wird überprüft, ob die ungültigen Eingaben korrekt abgefangen wurden und eine Eingabeaufforderung erscheint. 
 
-**Warum wird getestet?**  
-- Stellt sicher, dass der `GameController` bei ungültigen Eingaben die Eingabeaufforderung korrekt wiederholt, bis eine gültige Eingabe erfolgt.  
----
-
-## Protokoll Klasse
-
-
-### **1. GetInstanceTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob die `GetInstance()`-Methode von `Protokoll` immer dieselbe Instanz zurückgibt (Singleton-Verhalten).  
-
-**Wie wird getestet?**  
-- Es wird die `GetInstance()`-Methode zweimal aufgerufen, und die zurückgegebenen Instanzen werden miteinander verglichen.  
-- Der Test prüft, ob beide Instanzen identisch sind.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass nur eine Instanz der `Protokoll`-Klasse existiert, was dem Singleton-Muster entspricht.  
-
-
-### **2. ProtokolliereTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob ein Zug korrekt protokolliert wird.  
-
-**Wie wird getestet?**  
-- Ein Spieler (`testSpieler`) und ein Zug (`testZug`) werden erstellt.  
-- Die `Protokollieren()`-Methode wird aufgerufen, um den Zug zu protokollieren.  
-- Es wird geprüft, ob die Protokollierung erfolgreich durchgeführt wird (dies könnte durch Mocking oder Dateiüberprüfung erfolgen).  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass Züge korrekt protokolliert werden.  
-
-
-### **3. ProtokolliereSpielStartTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob der Spielstart korrekt protokolliert wird.  
-
-**Wie wird getestet?**  
-- Die Methode `ProtokolliereSpielStart()` wird mit einer Boardgröße (`boardSize`) aufgerufen.  
-- Es wird geprüft, ob die Protokollierung des Spielstarts erfolgt.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass der Start eines Spiels korrekt protokolliert wird.  
-
-
-### **4. ProtokolliereSpielEndeTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob das Spielende korrekt protokolliert wird.  
-
-**Wie wird getestet?**  
-- Ein Spieler (`gewinner`) wird erstellt.  
-- Die Methode `ProtokolliereSpielEnde()` wird mit dem Gewinner aufgerufen.  
-- Es wird überprüft, ob die Protokollierung des Spiels endet.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass das Ende eines Spiels korrekt protokolliert wird.  
-
-
-### **5. ZeitProtokollierenTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob die Spielzeit korrekt protokolliert wird.  
-
-**Wie wird getestet?**  
-- Ein Zeitwert (`spielzeit`) wird erstellt.  
-- Die Methode `ZeitProtokollieren()` wird mit der Spielzeit aufgerufen.  
-- Es wird überprüft, ob die Protokollierung der Zeit erfolgt.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass die Spielzeit korrekt protokolliert wird.  
-
-
-### **6. ConvertToChessNotationTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob die private Methode `ConvertToChessNotation()` korrekt funktioniert.  
-
-**Wie wird getestet?**  
-- Die private Methode `ConvertToChessNotation()` wird mittels Reflection aufgerufen.  
-- Es wird geprüft, ob das Ergebnis der Umwandlung der Koordinaten `0, 1` korrekt in die Schachnotation `"a2"` umgewandelt wird.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass die Umwandlung der Koordinaten in die Schachnotation korrekt funktioniert.  
-
-
-### **7. ProtokolliereUngueltigeEingabeTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob ungültige Eingaben korrekt protokolliert werden.  
-
-**Wie wird getestet?**  
-- Ein Spieler (`testSpieler`) und ein Zug (`testZug`) werden erstellt.  
-- Die Methode `ProtokolliereUngueltigeEingabe()` wird mit dem Zug aufgerufen.  
-- Es wird überprüft, ob die ungültige Eingabe protokolliert wird.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass ungültige Eingaben korrekt protokolliert werden.  
-
-
-### **8. ProtokolliereBestaettigungTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob eine Bestätigung korrekt protokolliert wird.  
-
-**Wie wird getestet?**  
-- Ein Spieler (`testSpieler`) und ein Zug (`testZug`) werden erstellt.  
-- Die Methode `ProtokolliereBestaetigung()` wird mit dem Zug aufgerufen.  
-- Es wird überprüft, ob die Bestätigung des Zugs korrekt protokolliert wird.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass eine Bestätigung korrekt protokolliert wird.  
-
-
-### **9. ProtokolliereNichtBestaettigungTest**  
-
-**Was wird getestet?**  
-- Überprüfung, ob eine Nicht-Bestätigung korrekt protokolliert wird.  
-
-**Wie wird getestet?**  
-- Ein Spieler (`testSpieler`) und ein Zug (`testZug`) werden erstellt.  
-- Die Methode `ProtokolliereNichtBestaetigung()` wird mit dem Zug aufgerufen.  
-- Es wird überprüft, ob die Nicht-Bestätigung des Zugs korrekt protokolliert wird.  
-
-**Warum wird getestet?**  
-- Sicherstellen, dass eine Nicht-Bestätigung korrekt protokolliert wird.  
-
+**Warum wird getestet?**: Stellt sicher, dass der `GameController` bei ungültigen Eingaben die Eingabeaufforderung korrekt wiederholt, bis eine gültige Eingabe erfolgt.  
 ---
 
 ## spieler Klasse
@@ -387,41 +170,29 @@
 
 ### **1. Spieler_Name_ShouldBeCorrect**
 
-**Was wird getestet?**  
-- Überprüfung, ob der Name des Spielers korrekt gesetzt wird.  
+**Was wird getestet?**: Überprüft ob der Name des Spielers korrekt gesetzt wird.  
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt wird mit dem Namen "Max" und dem Symbol `'X'` erstellt.  
-- Die Eigenschaft `Name` des Spielers wird abgefragt und überprüft, ob sie den Wert "Max" enthält.  
+**Wie wird getestet?**: Ein `Spieler` wird mit dem Namen "Max" und dem Symbol `'X'` erstellt. der name wird abgefragt und es wird überprüft ob er stimmt.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Name des Spielers korrekt gespeichert und abgerufen werden kann.  
+**Warum wird getestet?**: Zum testen, dass der Name des Spielers gespeichert und abgerufen werden kann.
 
 
 ### **2. Spieler_Symbol_ShouldBeCorrect**
 
-**Was wird getestet?**  
-- Überprüfung, ob das Symbol des Spielers korrekt gesetzt wird.  
+**Was wird getestet?**: Es wird Überprüft, ob das Symbol des Spielers korrekt gesetzt wird.  
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt wird mit dem Namen "Max" und dem Symbol `'X'` erstellt.  
-- Die Eigenschaft `Symbol` des Spielers wird abgefragt und überprüft, ob sie den Wert `'X'` enthält.  
+**Wie wird getestet?** Es wird ein Spieler mit dem Namen "Max" und dem Symbol `'X'` erstellt. Das symbol wird aufgerufen und es wird überprüft ob es `'X'` ist.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass das Symbol des Spielers korrekt gespeichert und abgerufen werden kann.  
+**Warum wird getestet?** Sicherstellen, dass das Symbol des Spielers korrekt gespeichert und abgerufen werden kann.  
 
 
 ### **3. Spieler_UndoFunction_ShouldNotBeNull**
 
-**Was wird getestet?**  
-- Überprüfung, ob die `Undo`-Funktion des Spielers nicht null ist.  
+**Was wird getestet?**: Überprüft ob die `Undo`-Funktion des Spielers nicht null ist.  
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt wird mit dem Namen "Max" und dem Symbol `'X'` erstellt.  
-- Die `Undo`-Funktion des Spielers wird abgefragt und überprüft, ob sie nicht null ist.  
+**Wie wird getestet?**: Ein Spieler wird mit dem Namen "Max" und dem Symbol `'X'` erstellt. Die `Undo`-Funktion wird abgefragt und es wird geprüft das diese nicht null ist  
 
-**Warum wird getestet?**  
-- Sicherstellen, dass die `Undo`-Funktion (vermutlich für die Rückgängig-Funktionalität des Spiels) korrekt zugewiesen und nicht null ist.  
+**Warum wird getestet?**: um zu testen, dass die `Undo`-Funktion korrekt zugewiesen und nicht null ist.  
 
 ---
 
@@ -430,85 +201,56 @@
 
 ### **1. Constructor_InitializesStopwatch**
 
-**Was wird getestet?**  
-- Überprüfung, ob der `SpielTimer`-Konstruktor den Timer korrekt initialisiert.  
+**Was wird getestet?**: Überprüft, ob der SpielTimer KOnstruktor den Timer korrekt initialisiert.  
 
-**Wie wird getestet?**  
-- Ein `SpielTimer`-Objekt wird erstellt.  
-- Die Methode `Erhalten()` wird aufgerufen, um den aktuellen Timer-Status zu überprüfen.  
+**Wie wird getestet?**: Ein SpielTimer wird erstellt und die Methode Erhalten wird aufgerufen um den aktuellen Status zu prüfen 
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Timer beim Erstellen des Objekts korrekt initialisiert wird und die anfängliche Zeit "00:00" ist.  
+**Warum wird getestet?**: Prüft das der Timer beim Erstellen des Objekts "00:00" ist.  
 
 
 ### **2. Starten_StartsTimer**
 
-**Was wird getestet?**  
-- Überprüfung, ob der Timer korrekt gestartet wird.  
+**Was wird getestet?**: Überprüft ob der Timer gestartet wird.  
 
-**Wie wird getestet?**  
-- Ein `SpielTimer`-Objekt wird erstellt und die Methode `Starten()` wird aufgerufen.  
-- Der Test wartet 1 Sekunde (`Thread.Sleep(1000)`) und stoppt dann den Timer mit `Stoppen()`.  
-- Es wird überprüft, ob die zurückgegebene Zeit nicht mehr "00:00" ist.  
+**Wie wird getestet?**: es wird ein Timer-Objekt erstellt und die Methode Starten wird aufgerufen. Danach wartet der test 1 Sekunde und stoppt dann den Timer mit der Methode Stoppen. Im anschluss wird überprüft ob die zurückgegebene Zeit nicht mehr "00:00" beträgt.  
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Timer bei einem Start eine tatsächliche Zeit misst und diese nicht gleich zu "00:00" bleibt.  
+**Warum wird getestet?**: Es wird Getestet um sicherzustelle dass der Timer beim Start eine tatsächliche Zeit misst.  
 
 
 ### **3. Stoppen_StopsTimer**
 
-**Was wird getestet?**  
-- Überprüfung, ob der Timer korrekt gestoppt wird.  
+**Was wird getestet?**: Überprüft ob der Timer korrekt gestoppt wird.  
 
-**Wie wird getestet?**  
-- Ein `SpielTimer`-Objekt wird erstellt und gestartet.  
-- Der Timer wird nach 1 Sekunde gestoppt.  
-- Die zurückgegebene Zeit wird zweimal abgefragt: einmal nach der ersten Pause und einmal nach einer zweiten Pause von 1 Sekunde.  
-- Es wird überprüft, ob die zurückgegebene Zeit nach der ersten Pause und der zweiten Pause gleich bleibt.  
+**Wie wird getestet?**: Es wird ein SpielTimer erstellt und gestartet. Nach 1 Sekunde wird der Timer wider Gestoppt und die Zeit zurückgegebene zeit wid 2 mal abgefragt, das erste mal nach der ersten Pause und und dan zum zweiten mal nach einer pause von einer Sekunde. Anschliessend wird geprüft ob die zurückgegebene Zeit nach den 2 Pausen immernoch gleich ist.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Timer gestoppt wird und keine Zeit mehr fortschreitet, wenn der Timer gestoppt ist.  
+**Warum wird getestet?**: Um sicherzugehen das der Timer auch wirklich gestoppt wird.
 
 
 ### **4. Erhalten_ReturnsFormattedTime**
 
-**Was wird getestet?**  
-- Überprüfung, ob die zurückgegebene Zeit im richtigen Format vorliegt.  
+**Was wird getestet?**: Überprüft ob die zurückgegebene Zeit im richtigen Format vorliegt.  
 
-**Wie wird getestet?**  
-- Ein `SpielTimer`-Objekt wird erstellt, gestartet und nach 1.5 Sekunden gestoppt.  
-- Es wird überprüft, ob die zurückgegebene Zeit dem Format `MM:SS` entspricht (z. B. "01:30").  
+**Wie wird getestet?**: Ein `SpielTimer`-Objekt wird erstellt, gestartet und nach 1.5 Sekunden gestoppt. danach wird überprüft ob die Zeit in dem Richtigen Format ist 
 
-**Warum wird getestet?**  
-- Sicherstellen, dass die zurückgegebene Zeit korrekt formatiert ist und dem vorgegebenen Zeitformat entspricht.  
+**Warum wird getestet?**: Um Sicherzustellen das die zurückgegebene Zeit korrekt formatiert.
 
 
 ### **5. Zuruecksetzen_ResetsTimer**
 
-**Was wird getestet?**  
-- Überprüfung, ob die Methode `Zuruecksetzen()` den Timer zurücksetzt.  
+**Was wird getestet?**: Überprüft ob die Methode Zuruecksetzen den Timer auch wirklich zurücksetzt.  
 
-**Wie wird getestet?**  
-- Ein `SpielTimer`-Objekt wird erstellt, gestartet und nach 1 Sekunde gestoppt.  
-- Die zurückgegebene Zeit wird gespeichert und dann wird der Timer mit `Zuruecksetzen()` zurückgesetzt.  
-- Der Timer wird erneut gestartet und nach 0.5 Sekunden gestoppt.  
-- Es wird überprüft, ob die zweite zurückgegebene Zeit unterschiedlich zur ersten ist.  
+**Wie wird getestet?**: Ein SpielTimer-Objekt wird erstellt und gestartet. Nach einer Sekunde wird es wieder gestoppt. Die Zurückgegebene Zeit wird gespeichert und dan grad wieder mit der Methode zurücksetzen zurückgesetzt. der Timer wird erneut gestartet und nach eienr bestimmten zeit wieder gestoppt. es wird Geprüft ob die 2 Zeiten Unterschiedlich sind.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Timer mit `Zuruecksetzen()` korrekt auf den Anfangszustand zurückgesetzt wird und die Zeit von vorne beginnt.  
+**Warum wird getestet?**: Man schaut dass der Timer mit der Methode Zuruecksetzen den timer auf den Anfangszustand zurücksetzt.
 
 
 ### **6. MultipleStartAndStop_WorksCorrectly**
 
-**Was wird getestet?**  
-- Überprüfung, ob das wiederholte Starten und Stoppen des Timers korrekt funktioniert.  
+**Was wird getestet?**: Überprüft ob das wiederholte Starten und Stoppen des Timers korrekt funktioniert.  
 
-**Wie wird getestet?**  
-- Ein `SpielTimer`-Objekt wird erstellt, mehrfach gestartet und gestoppt (jeweils nach 0.5 Sekunden).  
-- Es wird überprüft, ob die zurückgegebene Zeit das richtige Format hat.  
+**Wie wird getestet?**: Ein Timer-Objekt wird erstellt und mehrfach gestartet und gestoppt danach wird geprüft ob die zeit am ende das richtige Format hat.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Timer korrekt funktioniert, wenn er mehrfach gestartet und gestoppt wird und dass die Zeit korrekt abgerufen wird.  
+**Warum wird getestet?**: Gucken das der Timer korrekt funktioniert, wenn er mehrfach gestartet und gestoppt wird.
 
 ---
 
@@ -517,56 +259,38 @@
 
 ### **1. SpeichereZug_AddsZugToHistory**
 
-**Was wird getestet?**  
-- Überprüfung, ob ein Zug korrekt zum Verlauf (History) hinzugefügt wird.  
+**Was wird getestet?**: Überprüft ob ein Zug korrekt zur History hinzugefügt wird.  
 
-**Wie wird getestet?**  
-- Ein `UndoFunction`-Objekt wird erstellt, zusammen mit einem `Spieler`-Objekt und einem `Zug`.  
-- Der `SpeichereZug`-Methode wird der Zug übergeben, und danach wird der zuletzt gespeicherte Zug mit `LadeLetztenZug()` abgerufen.  
-- Es wird überprüft, ob der gespeicherte Zug mit dem geladenen Zug übereinstimmt.  
+**Wie wird getestet?**: zuerst werden ein UndoFunction-Objekt, ein Spieler-Objekt und einem Zug erstellt. Der Methode speichereZug wird ein Zug übergeben und danach wird der zuletzt gespeicherte Zug mit LadeLetztenZug abgerufen. Es wird überprüft ob die 2 Züge übereinstimmen.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Zug korrekt gespeichert wird und beim Laden des letzten Zuges wieder korrekt abgerufen werden kann.  
+**Warum wird getestet?**: Es wird sichergestellt dass der Zug korrekt gespeichert wird und beim Laden des letzten Zuges wieder korrekt abgerufen werden kann.  
 
 
 ### **2. LadeLetztenZug_ReturnsNullWhenNoZugeExist**
 
-**Was wird getestet?**  
-- Überprüfung, ob beim Versuch, einen Zug zu laden, der noch nicht gespeichert wurde, `null` zurückgegeben wird.  
+**Was wird getestet?**: Überprüft ob beim Versuch, einen Zug zu laden, der noch nicht gespeichert wurde, `null` zurückgegeben wird.  
 
-**Wie wird getestet?**  
-- Ein `UndoFunction`-Objekt wird erstellt, aber es wird kein Zug gespeichert.  
-- Die Methode `LadeLetztenZug()` wird aufgerufen, und es wird überprüft, ob der Wert `null` zurückgegeben wird.  
+**Wie wird getestet?**: Ein UndoFunction-Objekt wird erstellt es wird aber kein Zug gespeichert. Die Methode LadeLetztenZug wird aufgerufen und es wir überprüft ob der Wert `null` zurückgegeben wird.  
 
-**Warum wird getestet?**  
-- Sicherstellen, dass das System korrekt aufgerufen wird, wenn noch keine Züge gespeichert sind und entsprechend `null` zurückgibt.  
+**Warum wird getestet?**: Es wird Sichergestellt dass das System korrekt aufgerufen wird, wenn noch keine Züge gespeichert sind.  
 
 
 ### **3. LadeLetztenZug_RemovesZugFromHistory**
 
-**Was wird getestet?**  
-- Überprüfung, ob die Methode `LadeLetztenZug()` den Zug nach dem Laden entfernt (Stapelverhalten).  
+**Was wird getestet?**: Es wird geschau ob die Methode LadeLetztenZug den Zug nach dem Laden entfernt.  
 
-**Wie wird getestet?**  
-- Zwei Züge werden in die `UndoFunction` gespeichert.  
-- Der letzte Zug wird geladen und anschließend entfernt, und der nächste Zug wird ebenfalls geladen.  
-- Es wird überprüft, ob die Züge in der richtigen Reihenfolge geladen werden und ob nach dem Laden aller Züge `null` zurückgegeben wird.  
+**Wie wird getestet?**: Zwei Züge werden in die UndoFunction gespeichert danach wird Der letzte Zug geladen und anschließend entfernt ausserdem wird der nächste Zug geladen. Anschliessend wird überprüft, ob die Züge in der richtigen Reihenfolge geladen werden und ob am schluss null rauskommt. 
 
-**Warum wird getestet?**  
-- Sicherstellen, dass Züge in der Reihenfolge ihres Hinzufügens gespeichert und beim Laden in umgekehrter Reihenfolge abgerufen werden.  
+**Warum wird getestet?**: um Sicherzustellen, dass Züge in der richtigen Reihenfolge gespeichert und beim Laden wieder in richtiger reihenfolge geladen werden.
 
 
 ### **4. MultipleZuege_LoadedInReverseOrder**
 
-**Was wird getestet?**  
-- Überprüfung, ob mehrere Züge korrekt in umgekehrter Reihenfolge geladen werden.  
+**Was wird getestet?**: Überprüft ob mehrere Züge richtig in umgekehrter Reihenfolge geladen werden.  
 
-**Wie wird getestet?**  
-- Drei Züge werden in die `UndoFunction` gespeichert.  
-- Jeder Zug wird geladen und überprüft, ob sie in der richtigen umgekehrten Reihenfolge geladen werden.  
+**Wie wird getestet?**: Drei Züge werden in die UndoFunction gespeichert und anschliessend wird jeder Zug geladen und überprüft.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass die Methode `LadeLetztenZug()` Züge immer in umgekehrter Reihenfolge zurückgibt, da dies das typische Verhalten einer Undo-Funktion ist (LIFO - Last In, First Out).  
+**Warum wird getestet?**: Es wird geschaut dass die Methode LadeLetztenZug Züge immer in umgekehrter Reihenfolge zurückgibt (LIFO - Last In, First Out).  
 
 ---
 
@@ -575,71 +299,45 @@
 
 ### **1. Constructor_SetsPropertiesCorrectly**
 
-**Was wird getestet?**  
-- Überprüfung, ob der Konstruktor der `Zug`-Klasse die Eigenschaften des Objekts korrekt setzt (Spieler, Zeile und Spalte).
+**Was wird getestet?**: Überprüfung, ob der Konstruktor der Zug-Klasse die Eigenschaften korrekt setzt.
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt sowie Zeilen- und Spaltenwerte werden erstellt.  
-- Ein `Zug` wird mit diesen Werten instanziiert.  
-- Es wird überprüft, ob die Eigenschaften `Spieler`, `Row` und `Col` korrekt gesetzt sind.  
+**Wie wird getestet?**: Ein Spieler-Objekt sowie Zeilen- und Spaltenwerte werden erstellt, mit ihnen wird ein Zug instanziert. Anschliessend wird überprüft, ob die Eigenschaften `Spieler`, `Row` und `Col` korrekt gesetzt sind.  
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Konstruktor die richtigen Werte für den Spieler, die Zeile und die Spalte initialisiert.  
+**Warum wird getestet?**: ist da um zu schauen das der Konstruktor die richtigen Werte für den Spieler, die Zeile und die Spalte kriegt. 
 
 
 ### **2. Constructor_SetsZeitstempelToCurrentTime**
 
-**Was wird getestet?**  
-- Überprüfung, ob der `Zeitstempel` des `Zug`-Objekts auf die aktuelle Zeit gesetzt wird.
+**Was wird getestet?**: Es wird getestet, ob der Zeitstempel des Zug-Objekts auf die aktuelle Zeit gesetzt wird.
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt wird erstellt und der `Zug` wird instanziiert.  
-- Der `Zeitstempel` des `Zug`-Objekts wird geprüft und mit der Zeit vor und nach der Instanziierung verglichen.  
-- Es wird überprüft, dass der `Zeitstempel` des Zugs in diesem Zeitraum liegt.  
+**Wie wird getestet?**: zuerst wird ein Spieler-Objekt erstellt und der Zug wird instanziiert, Anschliessend wied der Zeitstempel des Zug-Objekts geprüft und mit der Zeit vor und nach der Instanziierung verglichen.
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der `Zeitstempel` korrekt auf die aktuelle Zeit gesetzt wird, wenn der Zug erstellt wird.  
+**Warum wird getestet?**: um zu schauen das der Zeitstempel korrekt auf die aktuelle Zeit gesetzt wird.
 
 
 ### **3. Constructor_AllowsZeroBasedIndices**
 
-**Was wird getestet?**  
-- Überprüfung, ob der Konstruktor auch nullbasierte Indizes akzeptiert.
+**Was wird getestet?**: Überprüft, ob der Konstruktor auch nullbasierte Indizes akzeptiert.
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt wird erstellt und der `Zug` wird mit den Indizes `0, 0` instanziiert.  
-- Es wird überprüft, ob `Row` und `Col` korrekt auf `0` gesetzt sind.  
+**Wie wird getestet?**: Ein Spieler-Objekt wird erstellt und der Zug wird mit `0, 0` erstellt. Danach wird geschaut, ob `Row` und `Col` korrekt auf `0` gesetzt sind.  
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Konstruktor auch mit nullbasierten Indizes funktioniert, die häufig bei Arrays und Matrizen verwendet werden.  
+**Warum wird getestet?** Ist da um Sicherzustellen, dass der Konstruktor auch mit nullbasierten Indizes funktioniert 
 
 
 ### **4. Constructor_AllowsNegativeIndices**
 
-**Was wird getestet?**  
-- Überprüfung, ob der Konstruktor auch negative Indizes akzeptiert.
+**Was wird getestet?**: Überprüft, ob der Konstruktor auch negative werte akzeptiert.
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt wird erstellt und der `Zug` wird mit den Indizes `-1, -2` instanziiert.  
-- Es wird überprüft, ob `Row` und `Col` korrekt auf `-1` und `-2` gesetzt sind.  
+**Wie wird getestet?**: zuesrt wird ein Spieler-Objekt erstellt und danach wird der Zug wird mit `-1, -2` instanziiert. Danach wird überprüft, ob `Row` und `Col` korrekt auf `-1` und `-2` gesetzt sind.  
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der Konstruktor auch mit negativen Indizes funktioniert, was in einigen Spielmechaniken oder Testfällen von Bedeutung sein kann.  
-
+**Warum wird getestet?**: es wird geschaut das der Konstruktor auch mit negativen werten funktioniert (manchmal wichtig in einigen spielmechaniken oder test)
 
 ### **5. Constructor_SetsPlayerSymbolCorrectly**
 
-**Was wird getestet?**  
-- Überprüfung, ob der `Symbol` des Spielers korrekt gesetzt wird.
+**Was wird getestet?**: prüft dass das Symbol des Spielers korrekt gesetzt wird.
 
-**Wie wird getestet?**  
-- Ein `Spieler`-Objekt mit dem Symbol `'O'` wird erstellt.  
-- Ein `Zug` wird mit diesem Spieler instanziiert.  
-- Es wird überprüft, ob das Symbol des Spielers korrekt auf `'O'` gesetzt ist.  
+**Wie wird getestet?**: Ein Spieler wird mit dem Symbol `'O'` erstellt und aus ihm wird dan ein Zug Instanziert. Danach überprüft man ob das Symbol des Spielers korrekt auf `'O'` gesetzt ist.  
 
-**Warum wird getestet?**  
-- Sicherstellen, dass der `Symbol` des Spielers korrekt im `Zug`-Objekt gespeichert wird und zugänglich ist.  
-
----
+**Warum wird getestet?**: ist da um sicherzustellen, dass das Symbol des Spielers korrekt gespeichert wird.  
 
 
